@@ -49,6 +49,7 @@ higher-volatility setups and accepts bigger swings and drawdowns in exchange.
 | `technical-analyst` | Price action, trend, levels, momentum, volume | No |
 | `entry-manager` | Turns the plan into order *previews* | Previews only |
 | `risk-manager` | Sizing, exposure and loss-limit review - **only when the human asks**; advisory, never blocks | No |
+| `day-trader` | Intraday technician: level maps, ORB/VWAP setups, live check-ins - **only when the human asks**; standalone, flat by the close | No |
 
 ## Pipeline
 
@@ -62,6 +63,10 @@ macro-analyst ──► sector-analyst ──► fundamentals-analyst ─┐
                                                            ▼
                                   HUMAN approves and places the order
 ```
+
+The `day-trader` is also **outside** the pipeline: it is standalone, used only
+when the human asks, and is the one agent exempt from the 1-30 day horizon
+(all of its trades are intraday and flat by the close).
 
 The `risk-manager` is **not** part of this pipeline. No agent calls it unless
 the human explicitly asks for a risk review, and its verdict never stops the

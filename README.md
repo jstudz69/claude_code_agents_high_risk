@@ -60,6 +60,17 @@ The risk manager only runs when you ask, e.g. `Run a risk review on my
 positions` or `Size an IQV entry at 272.76 with a stop at 264.70`. Its limits
 live in `policy/risk-limits.md` (aggressive defaults; edit to taste).
 
+## Day trader (intraday, on request)
+
+`.claude/agents/day-trader.md` is a standalone intraday technician. Ask it
+directly, e.g. `Use the day-trader agent: pre-market plan for MXL` or
+`day-trader: live check on HPE`. It builds a level map (prior-day and
+pre-market highs/lows, VWAP, pivots, opening range, relative volume), names
+the setup (ORB, VWAP reclaim, EMA pullback, gap-and-go, failed breakout),
+and gives entry / stop / 1R-2R targets and share size. Everything is flat by
+the close. It checks the **Pattern Day Trader rule** first: margin accounts
+under $25k get 3 day trades per 5 business days.
+
 ## Safety design
 
 - No agent has order-placing tools. The entry manager produces previews; you

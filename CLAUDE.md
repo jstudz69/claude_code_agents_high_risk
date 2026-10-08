@@ -4,6 +4,37 @@ This repo defines a team of Claude Code agents that research and plan trades.
 Every agent on the team follows these rules in addition to its own definition in
 `.claude/agents/`.
 
+## Discipline guard (every agent, every request - runs FIRST)
+
+The human asked: **"yell at me when I start gambling."** So whichever agent
+the human is talking to directly (usually `trading-orchestrator`; also
+`entry-manager`, `day-trader` or `risk-manager` when called on their own) does
+this before any analysis on a request that touches the account or a trade
+idea. Specialists called by the orchestrator skip it; the orchestrator already
+ran it.
+
+1. Pull the live account (read-only): `get_portfolio`, positions, and today's
+   and the last 5 trading days' equity and option orders.
+2. Check every tripwire in `policy/discipline-rules.md`.
+3. If anything trips, the **very first thing** in the response is an alarm
+   block, before any analysis, in plain blunt language:
+
+   ```markdown
+   ## 🚨 STOP - YOU'RE GAMBLING (RED | AMBER)
+   | Tripwire | What you did | $ impact | Rule |
+   |---|---|---|---|
+   **Do this now:** <reduce/exit steps only>
+   ```
+
+   Be direct and specific (name the order, time, size and dollars). No
+   softening, no lecture longer than the table. Then continue with the
+   request.
+4. If nothing trips, write one line: `Discipline check: clear`.
+
+On **RED**, give reduce/exit actions only; any new entry idea is labelled
+**WATCHLIST ONLY - NOT TODAY**. This guard is separate from the on-request
+`risk-manager`: it never stops analysis, it just shouts first.
+
 ## Trading horizon (applies to every agent)
 
 The team trades **mid-term swings: held from 1 day (overnight) up to 30

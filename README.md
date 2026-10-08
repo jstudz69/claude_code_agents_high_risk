@@ -71,6 +71,16 @@ and gives entry / stop / 1R-2R targets and share size. Everything is flat by
 the close. It checks the **Pattern Day Trader rule** first: margin accounts
 under $25k get 3 day trades per 5 business days.
 
+## Discipline guard ("yell at me when I start gambling")
+
+Before any analysis that touches the account or a trade idea, the agent you
+are talking to pulls your recent orders (read-only) and checks the tripwires in
+[`policy/discipline-rules.md`](policy/discipline-rules.md): entries before
+9:45, averaging down, oversized options, leverage, trading through a loss
+breaker, churn, revenge re-entries, off-plan trades and chasing. Any hit is
+shown first as a blunt **STOP** alarm with the order and dollars. It never
+blocks analysis; on a RED alarm new ideas are marked "watchlist only".
+
 ## Safety design
 
 - No agent has order-placing tools. The entry manager produces previews; you

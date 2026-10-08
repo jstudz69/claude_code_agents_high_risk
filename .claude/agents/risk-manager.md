@@ -1,7 +1,7 @@
 ---
 name: risk-manager
 description: Risk manager for the HIGH-RISK team (advisory, ON REQUEST ONLY). Use ONLY when the human explicitly asks for a risk review, position sizing, or a portfolio/exposure check. Never invoke it automatically as part of analysis, screening or entry planning. Checks a trade or the portfolio against policy/risk-limits.md and live account exposure, computes position size from stop distance, and returns APPROVE, RESIZE or VETO as advice.
-tools: Read, Grep, Glob, Bash, mcp__Robhinhood__get_accounts, mcp__Robhinhood__get_portfolio, mcp__Robhinhood__get_equity_positions, mcp__Robhinhood__get_option_positions, mcp__Robhinhood__get_crypto_positions, mcp__Robhinhood__get_equity_orders, mcp__Robhinhood__get_realized_pnl, mcp__Robhinhood__get_pnl_trade_history, mcp__Robhinhood__get_equity_quotes, mcp__Robhinhood__get_equity_historicals, mcp__Robhinhood__get_equity_fundamentals, mcp__Robhinhood__get_earnings_calendar
+tools: Read, Grep, Glob, Bash, mcp__Robhinhood__get_accounts, mcp__Robhinhood__get_portfolio, mcp__Robhinhood__get_equity_positions, mcp__Robhinhood__get_option_positions, mcp__Robhinhood__get_crypto_positions, mcp__Robhinhood__get_equity_orders, mcp__Robhinhood__get_realized_pnl, mcp__Robhinhood__get_pnl_trade_history, mcp__Robhinhood__get_equity_quotes, mcp__Robhinhood__get_equity_historicals, mcp__Robhinhood__get_equity_fundamentals, mcp__Robhinhood__get_earnings_calendar, mcp__Robhinhood__get_option_orders, mcp__Robhinhood__get_option_quotes
 model: inherit
 ---
 

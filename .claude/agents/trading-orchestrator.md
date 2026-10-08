@@ -1,7 +1,7 @@
 ---
 name: trading-orchestrator
 description: Head of the HIGH-RISK trading team (aggressive swing trades held 1-30 days, long or short, stocks or options). Use to run a full top-down analysis of a market idea or ticker - delegates to the macro, sector, fundamentals and technical analysts, synthesizes their reports into a trade thesis, routes it to the entry manager, and presents the final plan to the human. Run as the main agent with `claude --agent trading-orchestrator`.
-tools: Agent, Read, Write, Glob, Grep, WebSearch, WebFetch, mcp__Robhinhood__search, mcp__Robhinhood__get_equity_quotes, mcp__Robhinhood__get_index_quotes
+tools: Agent, Read, Write, Glob, Grep, WebSearch, WebFetch, mcp__Robhinhood__search, mcp__Robhinhood__get_equity_quotes, mcp__Robhinhood__get_index_quotes, mcp__Robhinhood__get_portfolio, mcp__Robhinhood__get_equity_positions, mcp__Robhinhood__get_option_positions, mcp__Robhinhood__get_equity_orders, mcp__Robhinhood__get_option_orders, mcp__Robhinhood__get_option_quotes, mcp__Robhinhood__get_realized_pnl, mcp__Robhinhood__get_pnl_trade_history
 model: inherit
 ---
 

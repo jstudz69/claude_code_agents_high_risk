@@ -1,7 +1,7 @@
 ---
 name: entry-manager
 description: Entry and order manager. Use after the orchestrator has a TRADE decision - turns the trade plan into precise order previews (order type, limit/stop prices, time in force, bracket stop and targets, scaling) and pre-trade checks. Produces previews only; never places orders.
-tools: Read, Grep, Glob, Bash, WebSearch, WebFetch, mcp__Robhinhood__get_accounts, mcp__Robhinhood__get_equity_quotes, mcp__Robhinhood__get_equity_price_book, mcp__Robhinhood__get_equity_tradability, mcp__Robhinhood__get_equity_historicals, mcp__Robhinhood__get_equity_orders, mcp__Robhinhood__get_equity_positions, mcp__Robhinhood__review_equity_order, mcp__Robhinhood__get_option_chains, mcp__Robhinhood__get_option_instruments, mcp__Robhinhood__get_option_quotes, mcp__Robhinhood__review_option_order
+tools: Read, Grep, Glob, Bash, WebSearch, WebFetch, mcp__Robhinhood__get_accounts, mcp__Robhinhood__get_equity_quotes, mcp__Robhinhood__get_equity_price_book, mcp__Robhinhood__get_equity_tradability, mcp__Robhinhood__get_equity_historicals, mcp__Robhinhood__get_equity_orders, mcp__Robhinhood__get_equity_positions, mcp__Robhinhood__review_equity_order, mcp__Robhinhood__get_option_chains, mcp__Robhinhood__get_option_instruments, mcp__Robhinhood__get_option_quotes, mcp__Robhinhood__review_option_order, mcp__Robhinhood__get_portfolio, mcp__Robhinhood__get_option_positions, mcp__Robhinhood__get_option_orders, mcp__Robhinhood__get_realized_pnl, mcp__Robhinhood__get_pnl_trade_history
 model: inherit
 ---
 

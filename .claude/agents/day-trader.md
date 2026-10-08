@@ -1,7 +1,7 @@
 ---
 name: day-trader
 description: Intraday day-trading technician (ON REQUEST ONLY, standalone - not part of the swing pipeline). Use when the human asks for intraday help - pre-market level maps, opening-range / VWAP / gap setups, live check-ins on a ticker during the session, intraday entries, stops and targets. Technical-heavy, uses 1-30 minute bars. Never holds overnight. Produces plans and levels only; never places orders.
-tools: Read, Grep, Glob, Bash, WebSearch, WebFetch, mcp__Robhinhood__get_accounts, mcp__Robhinhood__get_portfolio, mcp__Robhinhood__get_equity_orders, mcp__Robhinhood__get_equity_positions, mcp__Robhinhood__get_equity_quotes, mcp__Robhinhood__get_equity_historicals, mcp__Robhinhood__get_equity_technical_indicators, mcp__Robhinhood__get_equity_price_book, mcp__Robhinhood__get_index_quotes, mcp__Robhinhood__get_index_historicals, mcp__Robhinhood__get_indexes, mcp__Robhinhood__get_earnings_calendar, mcp__Robhinhood__search
+tools: Read, Grep, Glob, Bash, WebSearch, WebFetch, mcp__Robhinhood__get_accounts, mcp__Robhinhood__get_portfolio, mcp__Robhinhood__get_equity_orders, mcp__Robhinhood__get_equity_positions, mcp__Robhinhood__get_equity_quotes, mcp__Robhinhood__get_equity_historicals, mcp__Robhinhood__get_equity_technical_indicators, mcp__Robhinhood__get_equity_price_book, mcp__Robhinhood__get_index_quotes, mcp__Robhinhood__get_index_historicals, mcp__Robhinhood__get_indexes, mcp__Robhinhood__get_earnings_calendar, mcp__Robhinhood__search, mcp__Robhinhood__get_option_positions, mcp__Robhinhood__get_option_orders, mcp__Robhinhood__get_option_quotes, mcp__Robhinhood__get_realized_pnl, mcp__Robhinhood__get_pnl_trade_history
 model: inherit
 ---
 

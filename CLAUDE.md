@@ -63,7 +63,7 @@ higher-volatility setups and accepts bigger swings and drawdowns in exchange.
 | Instruments | Stocks, ETFs (incl. leveraged ETFs) and **options**: long calls and long puts only. **No spreads** (the human trades simple calls and puts), **no** naked short options, **no** margin-funded positions. |
 | Direction | **Long and short.** Bearish ideas are expressed with long puts, never by shorting stock. |
 | Universe | Small and mid caps welcome. Stock liquidity floor **$5M** avg daily $ volume (not $20M). Options need open interest **≥ 500** and a bid/ask spread **≤ 10% of mid**. |
-| Events | Earnings, FDA dates, investor days and other catalysts are **allowed as deliberate trades** — sized as defined risk (premium paid) and planned around the implied move. Holding through one by accident is still a mistake. |
+| Events | **No earnings exposure.** Never hold a stock or option through an earnings report; exit 2 trading days before, and don't open a position that reports within 10 trading days. Other catalysts (FDA dates, investor days) only as deliberate, defined-risk trades. |
 | Momentum | Extended names are allowed when money flow confirms. Chase limit is **trigger + 1 ATR** (not 0.5). |
 | Volatility | High-ATR names (5-15%/day) are fine. Stop distance and $ risk must still be stated. |
 | Option exits | Exit at **-50% of premium**, take half at **+100%**, and close by **7 calendar days before expiry** (or before an event you did not plan to hold through). |

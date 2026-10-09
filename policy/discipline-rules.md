@@ -14,7 +14,7 @@ most of the losses. Changes to this file are made by the human only.
 |---|---|---|---|
 | 1 | **Early entry**: an opening order before 9:45 ET | `get_equity_orders` / `get_option_orders`, opening orders with `created_at` 9:30-9:45 ET | Opening-range noise. Plans say 9:45. |
 | 2 | **Averaging down**: buying more of something that is red | Opening order on an underlying where the existing position's mark < average cost | Turns small losses into big ones. Losers are held, trimmed or exited only. |
-| 3 | **Oversized position**: one new option > 4% of the account in premium (or > $300 during probation), or a stock risking > 2% | Order premium × quantity vs. `get_portfolio` total | Per-position caps in `risk-limits.md`. |
+| 3 | **Oversized position**: one new option > 5% of the account in premium (> $700 during probation), or a stock risking > 2% (> 1% during probation) | Order premium × quantity vs. `get_portfolio` total | Per-position caps in `risk-limits.md`. |
 | 4 | **Leverage blow-out**: one position's delta-dollar exposure > 1.5× the account | `get_option_quotes` delta × 100 × qty × underlying price | A "hedge" bigger than the whole account is a bet, not a hedge. |
 | 5 | **Options over cap**: total option premium > 40% of the account | `get_portfolio` `options_value` / `total_value` | Portfolio cap in `risk-limits.md`. |
 | 6 | **Trading through a breaker**: any opening order after the day is down 4%+ or the rolling week 10%+ | `get_portfolio`, `get_realized_pnl` / `get_pnl_trade_history` | Revenge trading. After a breaker only reducing trades are allowed. |
@@ -39,6 +39,6 @@ most of the losses. Changes to this file are made by the human only.
 | Limit | Value |
 |---|---|
 | Max new opening trades per day | 3 |
-| Probation, until 10 clean trading days are logged | option premium ≤ $300 or 2% of account (smaller); stock risk ≤ 1% |
+| Probation, until 10 clean trading days are logged | option premium ≤ $700; stock risk ≤ 1% |
 | No new trades | after a breaker trips, for the rest of that day |
 | Entries | only after 9:45 ET, only from the written plan, only at or inside the planned buy zone |

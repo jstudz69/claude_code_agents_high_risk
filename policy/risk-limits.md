@@ -25,11 +25,11 @@ damage. **No earnings exposure, ever.**
 
 | Limit | Max |
 |---|---|
-| Risk per trade (stock: entry → stop; option: premium) | **2%** of the account |
-| Option premium per position | **4%** of the account |
+| Risk per trade (stock: entry → stop; option: premium × 50%, i.e. to the -50% stop) | **2.5%** of the account |
+| Option premium per position | **5%** of the account (about **$700** at ~$14k) |
 | Stock position size | **15%** of the account |
 | Stock-equivalent exposure of one option (delta × 100 × qty × price) | **1.5×** the account |
-| Probation (until 10 clean trading days are logged) | option premium ≤ **$300 or 2%**, whichever is smaller; stock risk ≤ **1%** |
+| Probation (until 10 clean trading days are logged) | option premium ≤ **$700**; stock risk ≤ **1%** |
 
 ## Diversification
 
@@ -38,7 +38,7 @@ damage. **No earnings exposure, ever.**
 | Premium + stock value in one **sector bucket** | **10%** of the account |
 | Positions in one sector bucket | **2** |
 | Premium expiring in the same week | **50%** of total premium |
-| When 4+ bullish positions are open | hold at least one put or index hedge (≤ 4% premium) |
+| When 4+ bullish positions are open | hold at least one put or index hedge (≤ 5% premium) |
 
 **Sector buckets** (a name goes in the bucket it trades with, not its label):
 

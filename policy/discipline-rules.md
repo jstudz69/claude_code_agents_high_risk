@@ -22,7 +22,7 @@ most of the losses. Changes to this file are made by the human only.
 | 8 | **Revenge re-entry**: re-opening a name within 2 trading days of exiting it at a loss | Recent orders + realized P/L | Emotional, not planned. |
 | 9 | **Off-plan trade**: an opening order on a name that is not in that day's written plan (if one exists in `reports/<date>/`) | Compare orders to the plan | The plan is written calm; the trade is made in the moment. |
 | 10 | **Chasing**: entry more than 1 ATR past the planned trigger | Fill price vs. plan trigger and ATR | High-risk chase limit. |
-| 11 | **Earnings exposure**: holding anything within 2 trading days of its earnings, or opening a position that reports within 10 trading days | `get_earnings_results` per held / ordered symbol | The human's rule: stay away from earnings. |
+| 11 | **Earnings exposure**: holding anything past its exit-by deadline (the last close before its report), or opening a position with fewer than 3 trading days before that deadline | `get_earnings_results` per held / ordered symbol | The human's rule: up to earnings, never through. |
 | 12 | **Sector pile-up**: more than 2 positions or more than 10% of the account in one sector bucket | Positions mapped to the buckets in `risk-limits.md` | One sector must not be able to wreck the account. |
 
 ## Severity

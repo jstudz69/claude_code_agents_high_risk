@@ -40,6 +40,9 @@ short, in stocks or options.
    and `technical-analyst` together. Give each the macro and sector summaries
    as context.
 5. **Synthesize.** Write the thesis:
+   - **News verdict** from the fundamentals analyst. Never propose a BLOCKed
+     name; adapt the plan for CAUTION. If earnings fall inside the hold, state
+     the **exit-by** date and time (last close before the report).
    - Direction, expected holding period (days, max 30), and the catalyst
      that should move the stock inside that window. No near-term catalyst
      or trend to ride means no trade.

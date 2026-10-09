@@ -8,7 +8,7 @@ made by the human only. **Every number is a maximum, not a target.**
 
 High return from a **diversified mix of long options and high-momentum
 stocks**, so that no single sector, position or earnings report can do serious
-damage. **No earnings exposure, ever.**
+damage. Positions may run **up to** earnings but are always **out before the report**.
 
 ## Account-level limits
 
@@ -51,14 +51,15 @@ damage. **No earnings exposure, ever.**
 7. Crypto-linked (miners, exchanges, BTC ETFs)
 8. Index hedges (SPY / QQQ / IWM puts)
 
-## Earnings: stay away
+## Earnings: up to, never through
 
 | Rule | Value |
 |---|---|
-| Holding any position (stock or option) through an earnings report | **Never** |
-| New entry | **Not** if the company reports within the planned hold window, or within **10 trading days** of entry |
-| Existing position | Exit by the close **2 trading days before** the report |
-| Earnings date not confirmed | Treat the estimated date as real |
+| Holding any position (stock or option) **through** an earnings report | **Never** |
+| Holding **up to** earnings | **Allowed** - the run-up is fair game |
+| Exit-by deadline | The close of the **last session before the report** (an after-the-close report: that day's close; a before-the-open report: the prior day's close) |
+| New entry | Only if at least **3 trading days** remain before the exit-by deadline |
+| Earnings date not confirmed | Treat the estimated date as real; if the timing is unknown, assume before the open |
 
 ## Instruments and exits
 

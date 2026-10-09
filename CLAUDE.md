@@ -60,8 +60,8 @@ higher-volatility setups and accepts bigger swings and drawdowns in exchange.
 
 | Area | High-risk rule |
 |---|---|
-| Instruments | Stocks, ETFs (incl. leveraged ETFs) and **options**: long calls, long puts, debit spreads. **No** naked short options, **no** margin-funded positions. |
-| Direction | **Long and short.** Bearish ideas are expressed with puts or put debit spreads, never by shorting stock. |
+| Instruments | Stocks, ETFs (incl. leveraged ETFs) and **options**: long calls and long puts only. **No spreads** (the human trades simple calls and puts), **no** naked short options, **no** margin-funded positions. |
+| Direction | **Long and short.** Bearish ideas are expressed with long puts, never by shorting stock. |
 | Universe | Small and mid caps welcome. Stock liquidity floor **$5M** avg daily $ volume (not $20M). Options need open interest **≥ 500** and a bid/ask spread **≤ 10% of mid**. |
 | Events | Earnings, FDA dates, investor days and other catalysts are **allowed as deliberate trades** — sized as defined risk (premium paid) and planned around the implied move. Holding through one by accident is still a mistake. |
 | Momentum | Extended names are allowed when money flow confirms. Chase limit is **trigger + 1 ATR** (not 0.5). |

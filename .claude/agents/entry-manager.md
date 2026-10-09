@@ -58,8 +58,9 @@ so they can size it themselves. Never invent a size.
 ## Options structures (high-risk team)
 
 When the plan calls for options, or a share position is impractical:
-- **Pick the structure:** long call/put for a fast, large expected move;
-  debit spread when implied volatility is high or the target is defined.
+- **Structure:** a single long call or long put. **Never propose spreads**
+  (debit, credit or converting a position to one); the human trades simple
+  calls and puts only. To reduce risk on an option, sell contracts or close.
 - **Strike:** delta ~0.40-0.60 for directional trades. **Expiry:** at least 2x
   the planned holding period, typically 30-60 days; for an event trade, the
   first expiry after the event.

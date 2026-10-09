@@ -16,7 +16,7 @@ edit any value to taste. No other agent reads this file.
 | Max correlated positions (same theme) | **3** |
 | Daily loss before new trades stop | **4%** |
 | Weekly loss before new trades stop (rolling 7 days) | **10%** |
-| Instruments | Stocks, ETFs (incl. leveraged), long calls/puts, debit spreads |
+| Instruments | Stocks, ETFs (incl. leveraged), long calls and long puts only (no spreads) |
 | Naked short options / short stock / margin | **No** |
 | Minimum reward:risk to first target | **1.5 : 1** |
 | Minimum avg daily $ volume (stock) | **$5M** |

@@ -47,7 +47,7 @@ short, in stocks or options.
    - Invalidation: the specific price/event that proves the thesis wrong
    - Overall conviction (Low/Medium/High) - never higher than the weakest
      critical input justifies
-   - **Structure:** stock, long call/put, or debit spread, and why. Options
+   - **Structure:** stock, long call or long put (never spreads), and why. Options
      fit best when there is a dated catalyst or when the stock price makes a
      share position too large.
    Medium conviction is enough to trade here if the payoff is asymmetric

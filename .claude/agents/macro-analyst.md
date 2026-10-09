@@ -44,7 +44,7 @@ Classify as one of:
 
 State the implication for the team as an **aggression dial**: risk-on = press
 longs and call structures; neutral = smaller size, catalyst trades only;
-risk-off = favor puts/put spreads on the weakest groups. Also give favored styles (growth/value,
+risk-off = favor puts on the weakest groups. Also give favored styles (growth/value,
 cyclical/defensive, large/small), suggested gross exposure bias
 (increase / hold / reduce), and which events in the next 30 days could flip
 the regime.

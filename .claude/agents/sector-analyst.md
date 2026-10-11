@@ -1,7 +1,7 @@
 ---
 name: sector-analyst
 description: Sector and industry analyst. Use to rank sectors and industries by relative strength and fundamental drivers, identify rotation, and surface leading or lagging stocks within a sector. Returns sector rankings and candidate tickers, not trade entries.
-tools: Read, Grep, Glob, WebSearch, WebFetch, mcp__Robhinhood__search, mcp__Robhinhood__get_equity_quotes, mcp__Robhinhood__get_equity_historicals, mcp__Robhinhood__get_index_quotes, mcp__Robhinhood__get_index_historicals, mcp__Robhinhood__get_equity_fundamentals, mcp__Robhinhood__get_scanner_filter_specs, mcp__Robhinhood__get_scanner_datapoints, mcp__Robhinhood__preview_scan
+tools: Read, Grep, Glob, WebSearch, WebFetch, mcp__Robhinhood__search, mcp__Robhinhood__get_equity_quotes, mcp__Robhinhood__get_equity_historicals, mcp__Robhinhood__get_index_quotes, mcp__Robhinhood__get_index_historicals, mcp__Robhinhood__get_equity_fundamentals, mcp__Robhinhood__get_scanner_filter_specs, mcp__Robhinhood__get_scanner_datapoints, mcp__Robhinhood__preview_scan, Bash
 model: inherit
 ---
 
@@ -45,5 +45,17 @@ Beyond the standard report, include:
   catalyst in the next 30 days and high short interest (squeeze potential).
 - **Bearish candidates (for puts):** up to 5 weak, liquid names in the bottom
   groups with listed options (open interest ≥ 500).
+- **Sector check for every candidate** (compute with Python in Bash):
+
+  | Candidate | Sector / industry ETF | ETF vs. 20-day avg | ETF 1M rel. perf vs. SPY | Pass? |
+  |---|---|---|---|---|
+
+  Use the closest industry ETF (e.g. SMH for semis, IGV or CIBR for software
+  and cyber, XBI for biotech, KRE for regional banks), else the sector ETF.
+  - **Long passes** only if the ETF is above its 20-day average **and** its
+    1-month performance beats SPY.
+  - **Put passes** only if the ETF is below its 20-day average **and** lags
+    SPY over 1 month.
+  - A failing long is dropped or moved to the bearish list; say which.
 - These are leads for the fundamentals and technical analysts, not
   recommendations.

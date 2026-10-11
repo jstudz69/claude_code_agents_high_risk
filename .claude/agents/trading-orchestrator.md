@@ -40,6 +40,13 @@ short, in stocks or options.
    and `technical-analyst` together. Give each the macro and sector summaries
    as context.
 5. **Synthesize.** Write the thesis:
+   - **Tape grade** from the macro analyst: on **RED**, propose no new long
+     entries (watchlist levels only); on **YELLOW**, half size and leaders
+     only. **Sector check** from the sector analyst: drop any long whose
+     sector ETF fails.
+   - **Entry plan and instrument** from the technical analyst: use its buy
+     zone, stop, R and earnings exit-by; respect its Options OK / Stock only
+     verdict.
    - **News verdict** from the fundamentals analyst. Never propose a BLOCKed
      name; adapt the plan for CAUTION. If earnings fall inside the hold, state
      the **exit-by** date and time (last close before the report).

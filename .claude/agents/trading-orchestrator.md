@@ -49,7 +49,10 @@ short, in stocks or options.
      verdict.
    - **News verdict** from the fundamentals analyst. Never propose a BLOCKed
      name; adapt the plan for CAUTION. If earnings fall inside the hold, state
-     the **exit-by** date and time (last close before the report).
+     the **exit-by** date and time (last close before the report). Show the
+     fundamentals analyst's **analyst trend** label (Improving / Stable /
+     Deteriorating, with net target raises vs. cuts over 30 days) next to
+     every candidate; prefer candidates whose trend runs with the trade.
    - Direction, expected holding period (days, max 30), and the catalyst
      that should move the stock inside that window. No near-term catalyst
      or trend to ride means no trade.

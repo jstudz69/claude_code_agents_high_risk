@@ -76,7 +76,7 @@ higher-volatility setups and accepts bigger swings and drawdowns in exchange.
 | `trading-orchestrator` | Runs the process, delegates, writes the final trade plan | No |
 | `macro-analyst` | Market regime: rates, inflation, liquidity, risk appetite | No |
 | `sector-analyst` | Sector rotation, relative strength, industry drivers | No |
-| `fundamentals-analyst` | Single-company fundamentals **and the news check** (headlines, filings, dilution, analyst actions, earnings exit-by date) - verdict CLEAR / CAUTION / BLOCK | No |
+| `fundamentals-analyst` | Single-company fundamentals **and the news check** (headlines, filings, dilution, analyst actions and the **analyst trend** (target raises/cuts, up/downgrades, estimate drift), earnings exit-by date) - verdict CLEAR / CAUTION / BLOCK | No |
 | `technical-analyst` | Price action, trend, levels, momentum, volume | No |
 | `entry-manager` | Turns the plan into order *previews* | Previews only |
 | `risk-manager` | Sizing, exposure and loss-limit review - **only when the human asks**; advisory, never blocks | No |

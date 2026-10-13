@@ -43,12 +43,50 @@ before the deeper work, and put its table at the top of your report.
 | Headlines, last 72 hours | WebSearch (company name + ticker, newest first); prefer primary sources and wires | Downgrade, guidance cut, lawsuit, probe, exec departure, halt, big contract win/loss |
 | SEC filings since last earnings | `get_sec_filing_index`; read 8-K / 424B / S-3 / prospectus items | **Any offering, ATM, shelf or convertible** (dilution), restatement, auditor change |
 | Insider activity | Form 4s in the filing index | Cluster selling, or notable buying |
-| Analyst actions, last 30 days | `get_equity_analyst_ratings` + WebSearch | Net downgrades / target cuts |
+| Analyst actions, last 30 days | `get_equity_analyst_ratings` + WebSearch (details in **Analyst trend** below) | Net downgrades / target cuts |
 | Earnings date | `get_earnings_results` (verified?) + company IR / WebSearch | Report date, timing, **exit-by deadline**, trading days left |
 | Other dated events, next 30 days | WebSearch, IR calendar | FDA, investor day, lockup expiry, index change |
 | Sector / peer read-through | Peers' news and moves today | Peer guidance cuts or selloffs |
 
 Say which items you could not verify (blocked sites, search-only snippets).
+
+## Analyst trend (mandatory, every name)
+
+The current rating mix is a snapshot. What moves a stock within 30 days is
+the **direction** of the Street: targets being cut or raised, upgrades or
+downgrades, estimates drifting. Report the trend, not just the level.
+
+`get_equity_analyst_ratings` only returns today's snapshot (Buy/Hold/Sell
+counts, high/low/mean target and its `updated_at`), so build the history
+from dated rating actions found with WebSearch (MarketBeat, Benzinga,
+TipRanks, wire stories, broker notes). Use only dated actions; never guess
+a date.
+
+| Measure | Window | How |
+|---|---|---|
+| Rating changes | last 30 / 90 days | Count upgrades, downgrades, initiations (with rating) |
+| Price-target changes | last 30 / 90 days | Count raises vs. cuts; list each: firm, date, old -> new, % change |
+| Median target change | last 30 days | Median % of the target moves above |
+| Mean-target drift | ~30 / 90 days ago vs. now | Use a dated consensus figure if one is published; otherwise say "not available" |
+| Price vs. mean target | now | % upside/downside to the mean and to the low target |
+| EPS estimate drift | last 30 / 90 days | Next quarter and next FY consensus, from `get_earnings_results` plus dated web sources |
+
+Output a short table of the individual actions (newest first, max 8 rows)
+and one trend label:
+
+- **Improving** - net upgrades or target raises in the last 30 days, or
+  estimates rising.
+- **Stable** - no meaningful net change.
+- **Deteriorating** - 2+ target cuts or any downgrade in the last 30 days,
+  the mean target down more than 5%, or estimates falling.
+
+How it feeds the news verdict: a **Deteriorating** trend on a long, or an
+**Improving** trend on a put, makes the verdict at least **CAUTION**. A
+downgrade wave (3+ cuts or downgrades within ~10 days) right before entry
+counts as a fresh negative for a long. Price above the mean target is not a
+sell signal on its own; say so when relevant. Also flag a trend running
+*with* the trade direction (e.g. cuts piling up under a put idea) as
+support.
 
 **News verdict** (the orchestrator acts on it):
 - **CLEAR** - nothing material against the trade.

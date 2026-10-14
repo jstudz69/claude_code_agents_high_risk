@@ -4,24 +4,25 @@ The **high-risk** version of [`claude_code_agents`](https://github.com/jstudz69/
 the same 7-agent team for swing trades held 1 to 30 days, retuned to hunt
 aggressive, asymmetric setups.
 
-> ⚠️ This team takes bigger, more volatile, option-heavy bets. Losses can be
-> fast and large. Every trade still has a defined max loss — and you still
-> place every order yourself.
+> ⚠️ This team takes bigger, more volatile bets: long **and short** stock on
+> **margin**. Losses can be fast and large, and a short's loss has no ceiling.
+> Every trade still has a stop resting at the broker — and you still place
+> every order yourself.
 
 ## What's different from the standard team
 
 | Area | Standard | High risk |
 |---|---|---|
-| Instruments | Stocks/ETFs | + long calls/puts, debit spreads, leveraged ETFs |
-| Direction | Long only (in practice) | Long **and** bearish (via puts) |
-| Liquidity floor | $20M ADV | $5M ADV; options OI ≥ 500, spread ≤ 10% |
-| Earnings / catalysts | Exit before | Allowed as deliberate, defined-risk event trades |
+| Instruments | Stocks/ETFs | Stocks/ETFs incl. leveraged and inverse ETFs, on margin. No options (since 2026-10-14) |
+| Direction | Long only (in practice) | Long **and** short stock |
+| Liquidity floor | $20M ADV | $5M ADV longs; $20M ADV and ≥ $10 for shorts |
+| Earnings / catalysts | Exit before | Held up to the report, never through |
 | Chase limit | Trigger + 0.5 ATR | Trigger + 1 ATR |
 | Extension allowed | < 3 ATR over 20DMA | < 4 ATR if money flow confirms |
 | Technical screen pass bar | 8.0 / 10 | 7.0 / 10 (`policy/tech-screen-rubric.md`) |
 | Candidates per run | ~3-5 | Up to 10 long + 5 bearish |
-| Risk limits (risk manager, on request) | 0.5%/trade, 3% total, no options | 2%/trade, 15% total, options ≤ 5% premium each / 30% total |
-| Option exits | n/a | -50% premium stop, half off at +100%, out 7 days before expiry |
+| Risk limits (risk manager, on request) | 0.5%/trade, 3% total, no options | 2.5%/trade, 15% total open risk, gross ≤ 1.5× equity, shorts ≤ 50% of equity |
+| Shorts | n/a | GTC buy-stop at fill, easy to borrow, short interest ≤ 20%, days to cover ≤ 5 |
 
 | Agent | File | Job |
 |---|---|---|
@@ -76,8 +77,9 @@ under $25k get 3 day trades per 5 business days.
 Before any analysis that touches the account or a trade idea, the agent you
 are talking to pulls your recent orders (read-only) and checks the tripwires in
 [`policy/discipline-rules.md`](policy/discipline-rules.md): entries before
-9:45, averaging down, oversized options, leverage, trading through a loss
-breaker, churn, revenge re-entries, off-plan trades and chasing. Any hit is
+9:45, averaging down, oversized positions, margin/leverage breaches, shorts
+without a buy-stop, trading through a loss breaker, churn, revenge
+re-entries, off-plan trades, chasing and new option trades. Any hit is
 shown first as a blunt **STOP** alarm with the order and dollars. It never
 blocks analysis; on a RED alarm new ideas are marked "watchlist only".
 

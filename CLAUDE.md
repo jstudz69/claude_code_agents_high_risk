@@ -48,8 +48,8 @@ calendar days**, typically 1-4 weeks.
   the next ~30 days. Anything further out is context, stated in one line.
 - **Primary chart timeframe:** daily bars. Weekly for trend context; 4-hour or
   hourly only to fine-tune entries.
-- **Time stop:** a stock trade that hasn't worked by day 30 is closed, win or
-  lose. Options follow the option exit rules below (they usually exit sooner).
+- **Time stop:** a trade (long or short) that hasn't worked by day 30 is
+  closed, win or lose.
 - If the human asks for a different horizon, flag that it's outside the team's
   design and proceed only if they confirm.
 
@@ -60,13 +60,14 @@ higher-volatility setups and accepts bigger swings and drawdowns in exchange.
 
 | Area | High-risk rule |
 |---|---|
-| Instruments | Stocks, ETFs (incl. leveraged ETFs) and **options**: long calls and long puts only. **No spreads** (the human trades simple calls and puts), **no** naked short options, **no** margin-funded positions. |
-| Direction | **Long and short.** Bearish ideas are expressed with long puts, never by shorting stock. |
-| Universe | Small and mid caps welcome. Stock liquidity floor **$5M** avg daily $ volume (not $20M). Options need open interest **≥ 500** and a bid/ask spread **≤ 10% of mid**. |
-| Events | **Up to earnings, never through.** A position may run into a report but is closed by the last close before it; new entries need 3+ trading days before that deadline. The fundamentals analyst gives every name a news check and an exit-by date. FDA dates and other binary events follow the same rule unless deliberately traded with defined risk. |
+| Instruments | **Stocks and ETFs only** (incl. leveraged and inverse ETFs), on **margin**. **No new options** (switched off 2026-10-14; leftover options are only reduced or closed). Gross exposure ≤ 1.5× equity, margin debit ≤ 50% of equity - see `policy/risk-limits.md`. |
+| Direction | **Long and short.** Bearish ideas are expressed by **shorting the stock** (or an index ETF). Every short gets a GTC buy-stop the moment it fills, must be easy to borrow, and needs short interest ≤ 20% of float and days to cover ≤ 5. |
+| Universe | Small and mid caps welcome. Liquidity floor **$5M** avg daily $ volume for longs; **$20M** and price ≥ $10 for shorts. |
+| Events | **Up to earnings, never through.** A position may run into a report but is closed by the last close before it; new entries need 3+ trading days before that deadline. The fundamentals analyst gives every name a news check and an exit-by date. FDA dates and other binary events follow the same rule: stock cannot cap a gap, so they are never held through. |
 | Momentum | Extended names are allowed when money flow confirms. Chase limit is **trigger + 1 ATR** (not 0.5). |
 | Volatility | High-ATR names (5-15%/day) are fine. Stop distance and $ risk must still be stated. |
-| Option exits | Exit at **-50% of premium**, take half at **+100%**, and close by **7 calendar days before expiry** (or before an event you did not plan to hold through). |
+| Exits | Stop entered as a **GTC order** at fill (longs and shorts), take half at **2R**, trail the rest, 30-day time stop. Minimum reward:risk 1.5:1 for longs, **2:1 for shorts**. |
+| Margin | Size from **equity**, never buying power. Under $25k the PDT rule applies: max 3 day trades per 5 business days. |
 | Non-negotiable | Every trade still has a defined max loss, a stop or exit rule, a target and a time stop. |
 
 ## The team

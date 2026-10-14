@@ -43,8 +43,9 @@ Classify as one of:
 - **Risk-off** - trend down, spreads widening, vol elevated
 
 State the implication for the team as an **aggression dial**: risk-on = press
-longs and call structures; neutral = smaller size, catalyst trades only;
-risk-off = favor puts on the weakest groups. Also give favored styles (growth/value,
+longs (margin allowed); neutral = smaller size, catalyst trades only, keep
+a short on; risk-off = favor short stock on the weakest groups and index
+shorts. Also give favored styles (growth/value,
 cyclical/defensive, large/small), suggested gross exposure bias
 (increase / hold / reduce), and which events in the next 30 days could flip
 the regime.
@@ -66,7 +67,7 @@ bars plus the live quote (compute with Python in Bash):
 - **GREEN** = 5-6 points: normal size.
 - **YELLOW** = 3-4 points: new longs at half size, leaders only.
 - **RED** = 0-2 points: **no new long entries today.** Only watchlist levels,
-  exits, and put setups on the weakest groups.
+  exits, and short setups on the weakest groups.
 
 Report the table, the grade, and the exact levels that would move it up or
 down a grade. The orchestrator must follow the grade.

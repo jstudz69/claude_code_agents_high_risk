@@ -2,7 +2,7 @@
 
 Use completed daily bars only (Robinhood `get_equity_historicals`, day, ~1 year).
 Compute everything in Python. Benchmark: SPY. Score longs as written; for
-bearish (put) candidates, mirror every rule (below falling MAs, outflow,
+bearish (short) candidates, mirror every rule (below falling MAs, outflow,
 underperforming, breakdown setup).
 
 | # | Factor | Points | Rule (long) |

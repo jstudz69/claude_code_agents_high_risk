@@ -43,8 +43,9 @@ Beyond the standard report, include:
 - **Long candidates:** up to 10 leading stocks in the top 2-3 groups. Small and
   mid caps are welcome (avg daily $ volume ≥ $5M). Flag names with a dated
   catalyst in the next 30 days and high short interest (squeeze potential).
-- **Bearish candidates (for puts):** up to 5 weak, liquid names in the bottom
-  groups with listed options (open interest ≥ 500).
+- **Bearish candidates (for short sale):** up to 5 weak names in the bottom
+  groups that are easy to short: average daily $ volume ≥ $20M, price ≥ $10,
+  short interest ≤ 20% of float.
 - **Sector check for every candidate** (compute with Python in Bash):
 
   | Candidate | Sector / industry ETF | ETF vs. 20-day avg | ETF 1M rel. perf vs. SPY | Pass? |
@@ -54,7 +55,7 @@ Beyond the standard report, include:
   and cyber, XBI for biotech, KRE for regional banks), else the sector ETF.
   - **Long passes** only if the ETF is above its 20-day average **and** its
     1-month performance beats SPY.
-  - **Put passes** only if the ETF is below its 20-day average **and** lags
+  - **Short passes** only if the ETF is below its 20-day average **and** lags
     SPY over 1 month.
   - A failing long is dropped or moved to the bearish list; say which.
 - These are leads for the fundamentals and technical analysts, not

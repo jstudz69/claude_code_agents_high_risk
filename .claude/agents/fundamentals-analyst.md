@@ -33,6 +33,12 @@ binary events follow the same rule unless the plan deliberately trades them. Rep
 (squeeze fuel) for every name. For bearish ideas, look for falling estimates,
 dilution, cash burn, insider selling and negative catalysts.
 
+**Short-sale checks (every short idea):** short interest > 20% of float or
+days to cover > 5 is a squeeze risk - verdict at least **CAUTION** and say
+the short fails the team's limit. Pending M&A, buyout talk or an activist
+stake is a **BLOCK** for a short. Report any ex-dividend date inside the hold
+(the short pays it).
+
 ## News & event check (mandatory, every name, run first)
 
 This is the team's news desk. Run it on every candidate and every holding
@@ -81,11 +87,11 @@ and one trend label:
   the mean target down more than 5%, or estimates falling.
 
 How it feeds the news verdict: a **Deteriorating** trend on a long, or an
-**Improving** trend on a put, makes the verdict at least **CAUTION**. A
+**Improving** trend on a short, makes the verdict at least **CAUTION**. A
 downgrade wave (3+ cuts or downgrades within ~10 days) right before entry
 counts as a fresh negative for a long. Price above the mean target is not a
 sell signal on its own; say so when relevant. Also flag a trend running
-*with* the trade direction (e.g. cuts piling up under a put idea) as
+*with* the trade direction (e.g. cuts piling up under a short idea) as
 support.
 
 **News verdict** (the orchestrator acts on it):

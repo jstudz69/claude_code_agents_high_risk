@@ -1,22 +1,30 @@
 # Risk Limits — HIGH RISK team
 
-Set by the human on 2026-10-09. Read by the `risk-manager` (on request) and by
-the discipline guard in `CLAUDE.md` (every request). Changes to this file are
-made by the human only. **Every number is a maximum, not a target.**
+Set by the human on 2026-10-09; **switched on 2026-10-14 to stocks only, margin
+enabled, short selling allowed (no new options).** Read by the `risk-manager`
+(on request) and by the discipline guard in `CLAUDE.md` (every request).
+Changes to this file are made by the human only. **Every number is a maximum,
+not a target.**
 
 ## Goal
 
-High return from a **diversified mix of long options and high-momentum
-stocks**, so that no single sector, position or earnings report can do serious
-damage. Positions may run **up to** earnings but are always **out before the report**.
+High return from a **diversified book of long and short stock positions**,
+using margin for extra gross exposure, so that no single sector, position,
+squeeze or earnings report can do serious damage. Positions may run **up to**
+earnings but are always **out before the report**.
 
 ## Account-level limits
 
 | Limit | Max |
 |---|---|
-| Account size used for sizing | Live account value from Robinhood |
-| Total option premium deployed | **40%** of the account (cash is the rest) |
-| Total open risk (sum of stop / premium-at-stop risk) | **15%** |
+| Account size used for sizing | Live account **equity** (net liquidation value) from Robinhood, never buying power |
+| Gross exposure (long value + absolute short value) | **1.5×** equity |
+| Net long exposure | **1.25×** equity |
+| Net short exposure | **0.5×** equity |
+| Total short value | **50%** of equity |
+| Margin debit (borrowed cash) | **50%** of equity |
+| Margin cushion | equity stays **≥ 30% above** the maintenance requirement; a margin call is met by cutting positions, never by depositing more |
+| Total open risk (sum of entry → stop risk, longs and shorts) | **15%** |
 | Positions open at once | 10 |
 | Daily loss before new trades stop | **4%** |
 | Weekly loss before new trades stop (rolling 7 days) | **10%** |
@@ -25,20 +33,32 @@ damage. Positions may run **up to** earnings but are always **out before the rep
 
 | Limit | Max |
 |---|---|
-| Risk per trade (stock: entry → stop; option: premium × 50%, i.e. to the -50% stop) | **2.5%** of the account |
-| Option premium per position | **5%** of the account (about **$700** at ~$14k) |
-| Stock position size | **15%** of the account |
-| Stock-equivalent exposure of one option (delta × 100 × qty × price) | **1.5×** the account |
-| Probation (until 10 clean trading days are logged) | option premium ≤ **$700**; stock risk ≤ **1%** |
+| Risk per trade (entry → stop, plus a normal overnight gap) | **2.5%** of equity |
+| Long position size | **20%** of equity |
+| Short position size | **15%** of equity (a short's loss has no ceiling) |
+| Probation (until 10 clean trading days are logged) | stock risk ≤ **1%** per trade; short size ≤ **10%** |
+
+## Short selling rules
+
+| Rule | Value |
+|---|---|
+| Protective order | A **GTC buy-stop (buy to cover)** at the plan's invalidation is entered as soon as the short fills. No mental stops on shorts, ever. |
+| Stop distance | 1-3 ATR above entry, above the structure that defines the breakdown |
+| Shortable | Must be shortable and easy to borrow (`get_equity_tradability`); no hard-to-borrow names |
+| Squeeze risk | Short interest **≤ 20%** of float and days to cover **≤ 5**; above either = no new short |
+| Liquidity | ≥ **$20M** average daily $ volume and price ≥ **$10** |
+| Event risk | No shorts with pending M&A / buyout talk or an activist; never hold a short through earnings (same exit-by rule) |
+| Dividends | A short pays the dividend: flag any ex-dividend date inside the hold |
+| Adding | Never add to a short that is above its average entry (that is averaging down) |
 
 ## Diversification
 
 | Limit | Max |
 |---|---|
-| Premium + stock value in one **sector bucket** | **10%** of the account |
-| Positions in one sector bucket | **2** |
-| Premium expiring in the same week | **50%** of total premium |
-| When 4+ bullish positions are open | hold at least one put or index hedge (≤ 5% premium) |
+| Gross exposure in one **sector bucket** | **35%** of equity |
+| Open risk in one sector bucket | **4%** of equity |
+| Positions in one sector bucket | **2** (a long and a short in the same bucket count as two) |
+| When 4+ long positions are open | hold at least one short (single name or index ETF) of ≥ 10% of equity |
 
 **Sector buckets** (a name goes in the bucket it trades with, not its label):
 
@@ -49,13 +69,13 @@ damage. Positions may run **up to** earnings but are always **out before the rep
 5. Consumer / retail / staples
 6. Industrials / energy / materials / defense
 7. Crypto-linked (miners, exchanges, BTC ETFs)
-8. Index hedges (SPY / QQQ / IWM puts)
+8. Index hedges (SPY / QQQ / IWM shorts or inverse ETFs)
 
 ## Earnings: up to, never through
 
 | Rule | Value |
 |---|---|
-| Holding any position (stock or option) **through** an earnings report | **Never** |
+| Holding any position (long or short) **through** an earnings report | **Never** |
 | Holding **up to** earnings | **Allowed** - the run-up is fair game |
 | Exit-by deadline | The close of the **last session before the report** (an after-the-close report: that day's close; a before-the-open report: the prior day's close) |
 | New entry | Only if at least **3 trading days** remain before the exit-by deadline |
@@ -65,12 +85,10 @@ damage. Positions may run **up to** earnings but are always **out before the rep
 
 | Rule | Value |
 |---|---|
-| Instruments | Stocks, ETFs (incl. leveraged), **long calls and long puts only** - no spreads |
-| Naked short options / short stock / margin | **No** |
-| Option expiry at entry | **≥ 30 days** |
-| Option exits, 2+ contracts | -50% premium stop; sell half at +100%; close 7 days before expiry |
-| Option exits, 1 contract | -50% stop; at **+50%** set a profit stop at **+20%**; sell at **+100%**; close 7 days before expiry |
-| Stock exits | Structure stop set at entry; sell half at 2R; trail the rest under the 10- or 20-day average; 30-day time stop |
-| Minimum reward:risk to first target | **1.5 : 1** |
-| Stock liquidity | ≥ $5M average daily $ volume |
-| Option liquidity | Open interest ≥ 500, bid/ask ≤ 10% of mid |
+| Instruments | Stocks and ETFs (incl. leveraged and inverse ETFs), **long or short**, cash or margin |
+| Options | **No new option positions.** Options opened before 2026-10-14 are only reduced or closed under their old exits (-50% premium stop, sell at +100%, out 7 days before expiry, out before earnings); never added to or rolled |
+| Stock exits (long and short) | Structure stop entered as a GTC order at fill; take half at 2R; trail the rest beyond the 10- or 20-day average; 30-day time stop |
+| Minimum reward:risk to first target | **1.5 : 1** for longs, **2 : 1** for shorts |
+| Stock liquidity | ≥ $5M average daily $ volume for longs; ≥ $20M for shorts |
+| Pattern Day Trader | Margin account under $25k: max **3 day trades** per 5 business days. A swing trade closed the same day it opened counts. |
+| Margin cost | State the margin interest (and any borrow fee) for a trade planned to last more than 2 weeks |

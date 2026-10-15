@@ -35,6 +35,32 @@ On **RED**, give reduce/exit actions only; any new entry idea is labelled
 **WATCHLIST ONLY - NOT TODAY**. This guard is separate from the on-request
 `risk-manager`: it never stops analysis, it just shouts first.
 
+## Team sign-off (every recommendation, no exceptions)
+
+The human's rule: **every recommendation runs through the whole team**, and
+every agent's verdict is shown. No shortcuts, no "screened it myself".
+
+1. Any ticker presented as a trade idea (long or short, new entry, add, or
+   watchlist with levels) must first get a separate report from **each** of:
+   `macro-analyst` (tape grade + macro fit), `sector-analyst` (industry ETF
+   alignment check), `fundamentals-analyst` (news check, analyst trend, short
+   interest for shorts, earnings exit-by), `technical-analyst` (score, money
+   flow, entry plan, short check) and `entry-manager` (order previews,
+   including the GTC stop / buy-stop). The `risk-manager` is added only when
+   the human asks.
+2. Present every recommendation as a **sign-off table: one row per agent**
+   (Agent | Verdict | Key evidence | Flags), then the final plan. When several
+   names are presented together, use one table with a column per ticker and a
+   row per agent.
+3. The ETF alignment row is mandatory: the stock's industry ETF and broad
+   sector ETF, each vs. its 20-day average and vs. SPY over 1 month, and
+   whether the stock confirmed or diverged from its ETF on the latest session.
+4. If any agent did not run, or returned FAIL / BLOCK / Against, say so in
+   its row. A name with a missing row is labelled **UNVETTED - NOT A
+   RECOMMENDATION** and is not given entry levels as a trade.
+5. A quick screen (scanner, a single chart look) only produces *candidates*.
+   Candidates are never presented as recommendations until step 1 is done.
+
 ## Trading horizon (applies to every agent)
 
 The team trades **mid-term swings: held from 1 day (overnight) up to 30

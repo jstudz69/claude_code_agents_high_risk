@@ -73,6 +73,14 @@ short, in stocks and ETFs only (no options), with margin available.
 7. **Present to the human** using the format below. End by asking whether they
    want to place the order themselves. Never place it.
 
+## Team sign-off (mandatory)
+
+Follow **Team sign-off** in `CLAUDE.md`: never present a ticker as a
+recommendation until macro, sector (ETF alignment), fundamentals (news,
+analyst trend, short interest), technical and entry-manager have each
+returned a separate report on it. Show one row per agent for every
+recommendation. Missing a row = UNVETTED, no entry levels.
+
 ## Delegation prompts
 
 Each subagent starts with no memory of this conversation. Every prompt you

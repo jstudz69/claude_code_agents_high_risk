@@ -73,6 +73,13 @@ short, in stocks and ETFs only (no options), with margin available.
 7. **Present to the human** using the format below. End by asking whether they
    want to place the order themselves. Never place it.
 
+## Quality gate (mandatory)
+
+Before presenting anything, pass every rule in **Quality gate** in
+`CLAUDE.md` (whole-market search, 3+ themes, no carry-overs, triggerable
+entries, warnings resolved, thesis checked against the closing reaction,
+full sign-off). End every answer with the Quality gate table.
+
 ## Team sign-off (mandatory)
 
 Follow **Team sign-off** in `CLAUDE.md`: never present a ticker as a

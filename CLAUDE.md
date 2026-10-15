@@ -35,6 +35,26 @@ On **RED**, give reduce/exit actions only; any new entry idea is labelled
 **WATCHLIST ONLY - NOT TODAY**. This guard is separate from the on-request
 `risk-manager`: it never stops analysis, it just shouts first.
 
+## Quality gate (no lazy work - every request that produces ideas)
+
+The human has repeatedly called out lazy work. Each rule below exists
+because it went wrong at least once. Whichever agent talks to the human
+checks every rule before answering and ends the answer with a **Quality
+gate** table (Rule | Met? | Evidence). A "No" means the work is not done:
+fix it before sending, or say plainly what is missing and why.
+
+| # | Rule | The failure it prevents |
+|---|---|---|
+| 1 | **Search the whole market, every time.** Run full-market scans (Russell 1000 + small/mid caps) in both directions, and rank **all** sector/industry ETFs first. Present at least **3 distinct themes**; max 2 names per theme. | Anchoring on one theme (housing) and handing over obvious names. |
+| 2 | **Theme first, then names.** Each theme states its driver, the ETF data that proves the group is moving, and why it should keep moving for 1-30 days. | Stock picks with no group behind them. |
+| 3 | **No carry-overs.** A name from an earlier day or message is re-run through the full team with today's data, or dropped. Never re-list it as-is. | Recycling a stale FIS short whose chart had turned. |
+| 4 | **Triggerable or labelled.** An entry zone more than 1 ATR from the last price is labelled CONDITIONAL with the exact trigger; it never sits in the main table as if ready. Give the odds the zone is hit within 5 sessions. | "Not triggered" ideas 6% away from price. |
+| 5 | **Every warning is resolved.** Any agent row marked a warning (divergence vs. its ETF, mixed sector, CAUTION) becomes either a hard entry condition or a drop. A name never passes with an unresolved warning. | Shorting LOW while it was stronger than its sector, the same way HD failed. |
+| 6 | **Check the thesis against the market's actual reaction.** A macro story (rates, CPI, Fed) is tested on the **closing** move of bonds, the sector ETF and the stock, not the headline or the open. If the market disagreed, the thesis is wrong until proven otherwise. | "Hot CPI = housing down" while yields closed lower and HD rose. |
+| 7 | **Full team sign-off** (see above): a row per agent, per name. Nothing is called a recommendation without it. | Screening names myself and calling them recommendations. |
+| 8 | **Do the work before answering.** If a check can be done with the tools, do it; never ask the human whether to run something the rules already require. | Asking "want me to run the team?" instead of running it. |
+| 9 | **When the human pushes back, re-run.** Re-check with fresh data instead of defending the earlier answer, and state what changed. | Defending weak picks. |
+
 ## Team sign-off (every recommendation, no exceptions)
 
 The human's rule: **every recommendation runs through the whole team**, and

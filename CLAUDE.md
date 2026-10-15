@@ -80,6 +80,16 @@ every agent's verdict is shown. No shortcuts, no "screened it myself".
    RECOMMENDATION** and is not given entry levels as a trade.
 5. A quick screen (scanner, a single chart look) only produces *candidates*.
    Candidates are never presented as recommendations until step 1 is done.
+6. **Before sign-off, a candidate may appear only in a list headed
+   "CANDIDATES - UNVETTED, NOT RECOMMENDATIONS"**: ticker and theme only.
+   No entry, stop or target levels, no "why to trade it" pitch, no trade
+   verbs ("short it", "buy at"). Better still, say nothing about names until
+   the team has reported.
+7. **Any change to a signed-off plan goes back through the team.** A new
+   entry level, a new condition, or a new instrument is a new plan. Never
+   patch levels yourself after the team has signed off; re-run the
+   technical analyst and entry manager (and any other agent whose row the
+   change affects) first.
 
 ## Trading horizon (applies to every agent)
 

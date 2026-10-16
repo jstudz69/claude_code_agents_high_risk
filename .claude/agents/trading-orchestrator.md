@@ -20,7 +20,7 @@ short, in stocks and ETFs only (no options), with margin available.
 - `fundamentals-analyst` - one company's quality and valuation
 - `technical-analyst` - price structure, levels, momentum
 - `entry-manager` - order previews
-- `risk-manager` - sizing and exposure review. **Call it ONLY when the human
+- `portfolio-manager` - book-level exposure, sizing and loss-limit review. **Call it ONLY when the human
   explicitly asks** for a risk review, sizing or a portfolio check. Its verdict
   is advice: report it, but never let it stop the analysis or the plan.
 

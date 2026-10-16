@@ -8,7 +8,7 @@ Every agent on the team follows these rules in addition to its own definition in
 
 The human asked: **"yell at me when I start gambling."** So whichever agent
 the human is talking to directly (usually `trading-orchestrator`; also
-`entry-manager`, `day-trader` or `risk-manager` when called on their own) does
+`entry-manager`, `day-trader` or `portfolio-manager` when called on their own) does
 this before any analysis on a request that touches the account or a trade
 idea. Specialists called by the orchestrator skip it; the orchestrator already
 ran it.
@@ -33,7 +33,7 @@ ran it.
 
 On **RED**, give reduce/exit actions only; any new entry idea is labelled
 **WATCHLIST ONLY - NOT TODAY**. This guard is separate from the on-request
-`risk-manager`: it never stops analysis, it just shouts first.
+`portfolio-manager`: it never stops analysis, it just shouts first.
 
 ## Quality gate (no lazy work - every request that produces ideas)
 
@@ -63,7 +63,7 @@ cannot silently downgrade a judgment step.
 
 | Work | Model | Agents |
 |---|---|---|
-| Sign-off verdicts, warning resolution, closing-reaction tests (rule 6), news verdicts, scores, entry levels, sizing, final recommendations | **opus** | trading-orchestrator, macro-analyst, sector-analyst, fundamentals-analyst, technical-analyst, entry-manager, risk-manager, day-trader |
+| Sign-off verdicts, warning resolution, closing-reaction tests (rule 6), news verdicts, scores, entry levels, sizing, final recommendations | **opus** | trading-orchestrator, macro-analyst, sector-analyst, fundamentals-analyst, technical-analyst, entry-manager, portfolio-manager, day-trader |
 | Fetching bars and quotes, plain indicators, correlations, table formatting, no verdicts | **haiku** | data-puller |
 
 Rules:
@@ -87,7 +87,7 @@ every agent's verdict is shown. No shortcuts, no "screened it myself".
    alignment check), `fundamentals-analyst` (news check, analyst trend, short
    interest for shorts, earnings exit-by), `technical-analyst` (score, money
    flow, entry plan, short check) and `entry-manager` (order previews,
-   including the GTC stop / buy-stop). The `risk-manager` is added only when
+   including the GTC stop / buy-stop). The `portfolio-manager` is added only when
    the human asks.
 2. Present every recommendation as a **sign-off table: one row per agent**
    (Agent | Verdict | Key evidence | Flags), then the final plan. When several
@@ -157,7 +157,7 @@ higher-volatility setups and accepts bigger swings and drawdowns in exchange.
 | `fundamentals-analyst` | Single-company fundamentals **and the news check** (headlines, filings, dilution, analyst actions and the **analyst trend** (target raises/cuts, up/downgrades, estimate drift), earnings exit-by date) - verdict CLEAR / CAUTION / BLOCK | No |
 | `technical-analyst` | Price action, trend, levels, momentum, volume | No |
 | `entry-manager` | Turns the plan into order *previews* | Previews only |
-| `risk-manager` | Sizing, exposure and loss-limit review - **only when the human asks**; advisory, never blocks | No |
+| `portfolio-manager` | Book-level exposure, sizing and loss-limit review - **only when the human asks**; advisory, never blocks | No |
 | `day-trader` | Intraday technician: level maps, ORB/VWAP setups, live check-ins - **only when the human asks**; standalone, flat by the close | No |
 
 ## Pipeline
@@ -177,7 +177,7 @@ The `day-trader` is also **outside** the pipeline: it is standalone, used only
 when the human asks, and is the one agent exempt from the 1-30 day horizon
 (all of its trades are intraday and flat by the close).
 
-The `risk-manager` is **not** part of this pipeline. No agent calls it unless
+The `portfolio-manager` is **not** part of this pipeline. No agent calls it unless
 the human explicitly asks for a risk review, and its verdict never stops the
 analysis or the entry plan.
 

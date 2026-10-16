@@ -21,7 +21,7 @@ aggressive, asymmetric setups.
 | Extension allowed | < 3 ATR over 20DMA | < 4 ATR if money flow confirms |
 | Technical screen pass bar | 8.0 / 10 | 7.0 / 10 (`policy/tech-screen-rubric.md`) |
 | Candidates per run | ~3-5 | Up to 10 long + 5 bearish |
-| Risk limits (risk manager, on request) | 0.5%/trade, 3% total, no options | 2.5%/trade, 15% total open risk, gross ≤ 1.5× equity, shorts ≤ 50% of equity |
+| Risk limits (portfolio manager, on request) | 0.5%/trade, 3% total, no options | 2.5%/trade, 15% total open risk, gross ≤ 1.5× equity, shorts ≤ 50% of equity |
 | Shorts | n/a | GTC buy-stop at fill, easy to borrow, short interest ≤ 20%, days to cover ≤ 5 |
 
 | Agent | File | Job |
@@ -32,7 +32,7 @@ aggressive, asymmetric setups.
 | Fundamentals analyst | `.claude/agents/fundamentals-analyst.md` | Single-stock business and valuation |
 | Technical analyst | `.claude/agents/technical-analyst.md` | Trend, levels, momentum, ATR |
 | Entry manager | `.claude/agents/entry-manager.md` | Order previews (never places orders) |
-| Risk manager | `.claude/agents/risk-manager.md` | Sizing and exposure review - **on request only**, advisory |
+| Portfolio manager | `.claude/agents/portfolio-manager.md` | Sizing and exposure review - **on request only**, advisory |
 
 Shared rules, the pipeline and the report format are in [`CLAUDE.md`](CLAUDE.md).
 
@@ -57,7 +57,7 @@ Then ask, for example:
 You can also call any specialist directly from a normal session:
 `Use the technical-analyst agent on AAPL`.
 
-The risk manager only runs when you ask, e.g. `Run a risk review on my
+The portfolio manager only runs when you ask, e.g. `Run a risk review on my
 positions` or `Size an IQV entry at 272.76 with a stop at 264.70`. Its limits
 live in `policy/risk-limits.md` (aggressive defaults; edit to taste).
 

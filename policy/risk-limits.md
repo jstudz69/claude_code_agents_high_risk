@@ -1,7 +1,7 @@
 # Risk Limits — HIGH RISK team
 
 Set by the human on 2026-10-09; **switched on 2026-10-14 to stocks only, margin
-enabled, short selling allowed (no new options).** Read by the `risk-manager`
+enabled, short selling allowed (no new options).** Read by the `portfolio-manager`
 (on request) and by the discipline guard in `CLAUDE.md` (every request).
 Changes to this file are made by the human only. **Every number is a maximum,
 not a target.**

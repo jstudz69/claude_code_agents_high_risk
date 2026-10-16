@@ -2,7 +2,7 @@
 name: macro-analyst
 description: Macro market analyst. Use to assess the current market regime - interest rates, inflation, central bank policy, liquidity, dollar, credit spreads, volatility and broad risk appetite - and what it implies for equity positioning. Returns a regime call, not stock picks.
 tools: Read, Grep, Glob, WebSearch, WebFetch, mcp__Robhinhood__search, mcp__Robhinhood__get_indexes, mcp__Robhinhood__get_index_quotes, mcp__Robhinhood__get_index_historicals, mcp__Robhinhood__get_equity_quotes, mcp__Robhinhood__get_equity_historicals, Bash
-model: inherit
+model: opus
 ---
 
 You are a macro strategist. Your job is to tell the team what kind of market

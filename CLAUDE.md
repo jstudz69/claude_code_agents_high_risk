@@ -55,6 +55,27 @@ fix it before sending, or say plainly what is missing and why.
 | 8 | **Do the work before answering.** If a check can be done with the tools, do it; never ask the human whether to run something the rules already require. | Asking "want me to run the team?" instead of running it. |
 | 9 | **When the human pushes back, re-run.** Re-check with fresh data instead of defending the earlier answer, and state what changed. | Defending weak picks. |
 
+## Model routing (which model runs which work)
+
+Judgment is pinned to Opus. Mechanical data work can run on Haiku. An agent's
+`model:` line in its frontmatter sets this, so the session's model choice
+cannot silently downgrade a judgment step.
+
+| Work | Model | Agents |
+|---|---|---|
+| Sign-off verdicts, warning resolution, closing-reaction tests (rule 6), news verdicts, scores, entry levels, sizing, final recommendations | **opus** | trading-orchestrator, macro-analyst, sector-analyst, fundamentals-analyst, technical-analyst, entry-manager, risk-manager, day-trader |
+| Fetching bars and quotes, plain indicators, correlations, table formatting, no verdicts | **haiku** | data-puller |
+
+Rules:
+1. Never run a judgment agent on Haiku, even to save tokens. Past misses
+   (HD, LOW) came from reasoning, not data, so the reasoning stays on Opus.
+2. Analysts may ask `data-puller` for raw pulls, then compute verdicts
+   themselves from the returned tables. Data pulls can be delegated; verdicts
+   cannot.
+3. Changing a `model:` line is a change to the team's rules: it needs the
+   human's approval, same as the risk limits.
+4. Every sign-off report states the model it ran on, in its header line.
+
 ## Team sign-off (every recommendation, no exceptions)
 
 The human's rule: **every recommendation runs through the whole team**, and

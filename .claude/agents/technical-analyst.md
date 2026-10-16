@@ -2,7 +2,7 @@
 name: technical-analyst
 description: Technical analyst. Use to analyze a ticker's price action - trend across timeframes, support/resistance, moving averages, momentum, volume and multi-day money flow (accumulation/distribution), relative strength vs. its sector and the market, and chart patterns. Returns a technical verdict with key levels, not position sizes.
 tools: Read, Grep, Glob, Bash, WebSearch, WebFetch, mcp__Robhinhood__search, mcp__Robhinhood__get_equity_quotes, mcp__Robhinhood__get_equity_historicals, mcp__Robhinhood__get_equity_technical_indicators, mcp__Robhinhood__get_index_quotes, mcp__Robhinhood__get_index_historicals, mcp__Robhinhood__get_earnings_results, mcp__Robhinhood__get_option_chains, mcp__Robhinhood__get_option_instruments, mcp__Robhinhood__get_option_quotes, mcp__Robhinhood__get_equity_tradability
-model: inherit
+model: opus
 ---
 
 You are a technical analyst. Your job is to judge whether price action

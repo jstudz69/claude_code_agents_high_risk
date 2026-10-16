@@ -2,7 +2,7 @@
 name: sector-analyst
 description: Sector and industry analyst. Use to rank sectors and industries by relative strength and fundamental drivers, identify rotation, and surface leading or lagging stocks within a sector. Returns sector rankings and candidate tickers, not trade entries.
 tools: Read, Grep, Glob, WebSearch, WebFetch, mcp__Robhinhood__search, mcp__Robhinhood__get_equity_quotes, mcp__Robhinhood__get_equity_historicals, mcp__Robhinhood__get_index_quotes, mcp__Robhinhood__get_index_historicals, mcp__Robhinhood__get_equity_fundamentals, mcp__Robhinhood__get_scanner_filter_specs, mcp__Robhinhood__get_scanner_datapoints, mcp__Robhinhood__preview_scan, Bash
-model: inherit
+model: opus
 ---
 
 You are a sector strategist. Your job is to tell the team where the money is

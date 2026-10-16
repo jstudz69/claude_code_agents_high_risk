@@ -57,17 +57,17 @@ fix it before sending, or say plainly what is missing and why.
 
 ## Model routing (which model runs which work)
 
-Judgment is pinned to Opus. Mechanical data work can run on Haiku. An agent's
+Judgment is pinned to Opus. Mechanical data work runs on Sonnet. An agent's
 `model:` line in its frontmatter sets this, so the session's model choice
 cannot silently downgrade a judgment step.
 
 | Work | Model | Agents |
 |---|---|---|
 | Sign-off verdicts, warning resolution, closing-reaction tests (rule 6), news verdicts, scores, entry levels, sizing, final recommendations | **opus** | trading-orchestrator, macro-analyst, sector-analyst, fundamentals-analyst, technical-analyst, entry-manager, portfolio-manager, day-trader |
-| Fetching bars and quotes, plain indicators, correlations, table formatting, no verdicts | **haiku** | data-puller |
+| Fetching bars and quotes, plain indicators, correlations, table formatting, no verdicts | **sonnet** | data-puller |
 
 Rules:
-1. Never run a judgment agent on Haiku, even to save tokens. Past misses
+1. Never run a judgment agent on Sonnet or Haiku, even to save tokens. Past misses
    (HD, LOW) came from reasoning, not data, so the reasoning stays on Opus.
 2. Analysts may ask `data-puller` for raw pulls, then compute verdicts
    themselves from the returned tables. Data pulls can be delegated; verdicts
@@ -87,8 +87,7 @@ every agent's verdict is shown. No shortcuts, no "screened it myself".
    alignment check), `fundamentals-analyst` (news check, analyst trend, short
    interest for shorts, earnings exit-by), `technical-analyst` (score, money
    flow, entry plan, short check) and `entry-manager` (order previews,
-   including the GTC stop / buy-stop). The `portfolio-manager` is added only when
-   the human asks.
+   including the GTC stop / buy-stop), and `portfolio-manager` (before/after portfolio impact). The `portfolio-manager` runs automatically on every recommendation, so it is a required row.
 2. Present every recommendation as a **sign-off table: one row per agent**
    (Agent | Verdict | Key evidence | Flags), then the final plan. When several
    names are presented together, use one table with a column per ticker and a
@@ -157,7 +156,7 @@ higher-volatility setups and accepts bigger swings and drawdowns in exchange.
 | `fundamentals-analyst` | Single-company fundamentals **and the news check** (headlines, filings, dilution, analyst actions and the **analyst trend** (target raises/cuts, up/downgrades, estimate drift), earnings exit-by date) - verdict CLEAR / CAUTION / BLOCK | No |
 | `technical-analyst` | Price action, trend, levels, momentum, volume | No |
 | `entry-manager` | Turns the plan into order *previews* | Previews only |
-| `portfolio-manager` | Book-level exposure, sizing and loss-limit review - **only when the human asks**; advisory, never blocks | No |
+| `portfolio-manager` | Book-level exposure, sizing, and portfolio impact of each recommendation - **runs automatically**; advisory, never blocks | No |
 | `day-trader` | Intraday technician: level maps, ORB/VWAP setups, live check-ins - **only when the human asks**; standalone, flat by the close | No |
 
 ## Pipeline
@@ -177,9 +176,10 @@ The `day-trader` is also **outside** the pipeline: it is standalone, used only
 when the human asks, and is the one agent exempt from the 1-30 day horizon
 (all of its trades are intraday and flat by the close).
 
-The `portfolio-manager` is **not** part of this pipeline. No agent calls it unless
-the human explicitly asks for a risk review, and its verdict never stops the
-analysis or the entry plan.
+The `portfolio-manager` runs **automatically** on every portfolio analysis and
+before every recommendation is presented. It gives a before/after impact table
+for each name. Its verdict is advisory and never stops the analysis, but a
+breach must be shown, not hidden.
 
 ## Hard rules (all agents)
 

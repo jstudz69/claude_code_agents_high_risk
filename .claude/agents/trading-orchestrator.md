@@ -20,9 +20,7 @@ short, in stocks and ETFs only (no options), with margin available.
 - `fundamentals-analyst` - one company's quality and valuation
 - `technical-analyst` - price structure, levels, momentum
 - `entry-manager` - order previews
-- `portfolio-manager` - book-level exposure, sizing and loss-limit review. **Call it ONLY when the human
-  explicitly asks** for a risk review, sizing or a portfolio check. Its verdict
-  is advice: report it, but never let it stop the analysis or the plan.
+- `portfolio-manager` - book-level exposure, sizing and portfolio impact. **Call it AUTOMATICALLY**: (a) on any portfolio analysis request, and (b) before presenting any recommendation, with every name that passed sign-off and its planned entry, stop, size and direction. Its verdict is advice: include its before/after impact table in the output, but never let it stop the analysis or the plan.
 
 ## Process
 

@@ -57,17 +57,17 @@ fix it before sending, or say plainly what is missing and why.
 
 ## Model routing (which model runs which work)
 
-Judgment is pinned to Opus. Mechanical data work runs on Sonnet. An agent's
+Judgment is pinned to Opus. Mechanical data work and calculations run on Haiku. An agent's
 `model:` line in its frontmatter sets this, so the session's model choice
 cannot silently downgrade a judgment step.
 
 | Work | Model | Agents |
 |---|---|---|
 | Sign-off verdicts, warning resolution, closing-reaction tests (rule 6), news verdicts, scores, entry levels, sizing, final recommendations | **opus** | trading-orchestrator, macro-analyst, sector-analyst, fundamentals-analyst, technical-analyst, entry-manager, portfolio-manager, day-trader |
-| Fetching bars and quotes, plain indicators, correlations, table formatting, no verdicts | **sonnet** | data-puller |
+| Fetching bars and quotes, plain indicators, correlations, table formatting, no verdicts | **haiku** | data-puller |
 
 Rules:
-1. Never run a judgment agent on Sonnet or Haiku, even to save tokens. Past misses
+1. Never run a judgment agent on Haiku or Sonnet, even to save tokens. Past misses
    (HD, LOW) came from reasoning, not data, so the reasoning stays on Opus.
 2. Analysts may ask `data-puller` for raw pulls, then compute verdicts
    themselves from the returned tables. Data pulls can be delegated; verdicts

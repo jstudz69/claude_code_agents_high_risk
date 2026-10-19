@@ -93,9 +93,14 @@ listed as a separate line so the human sees them. Size everything as % of
 **Required tables**
 
 1. **Correlation matrix** (positions x positions, 60d, with the 20d matrix
-   beside it). Flag pairs above **+0.60** (move together) and below **-0.40**
-   (natural hedge). A long and a short with correlation above +0.60 is a pair
-   trade - treat their net, not their gross, as the risk.
+   beside it). Show it on **underlying returns**, then flag pairs on the
+   **signed P&L** correlation (underlying correlation x sign of the two
+   positions): P&L correlation above **+0.60** means the two positions win and
+   lose together (stacked risk, even when one is a short); below **-0.40**
+   means they offset (natural hedge). Example: a long CVX and a short IWM with
+   an underlying correlation of -0.48 are the same bet, not a hedge. A long and
+   a short with underlying correlation above +0.60 is a pair trade - treat
+   their net, not their gross, as the risk.
 2. **Per-position factor table**: signed $ and % of equity, 60d daily vol,
    beta to SPY, beta to QQQ, beta to SMH, correlation to IGV / XLE / XLV / TLT.
 3. **Portfolio totals**: daily vol, 1-day 95% parametric VaR in $ and % of

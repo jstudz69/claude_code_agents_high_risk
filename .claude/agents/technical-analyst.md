@@ -87,6 +87,7 @@ Every candidate you pass forward carries a ready-to-use plan:
 
 | Field | Rule |
 |---|---|
+| **Entry style** | **Fade-the-bounce / buy-the-pullback only.** No breakout or breakdown triggers (human rule). Name the resistance or support zone, the rejection/confirmation signal (e.g. a 30-minute close back under the level), the dead-idea level, and the odds of reaching the zone in 1-5 sessions. No bounce = no trade |
 | **Entry zone** | A price range, not a single price. Long: from the trigger (or the pullback support) to at most trigger + 1 ATR. Short: from the breakdown trigger (or the failed-rally resistance) to at most trigger - 1 ATR |
 | **Stop** | The structural invalidation level. Long: below the base, pullback low or key moving average. Short: above the breakdown level, lower high or key moving average (1-3 ATR) |
 | **R per share** | Distance from the entry-zone midpoint to the stop, in $ and in ATRs |

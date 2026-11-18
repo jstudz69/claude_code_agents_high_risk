@@ -32,8 +32,7 @@ so they can size it themselves. Never invent a size.
    the market is open. Flag a spread wider than 0.2% of price.
 2. **Entry style** - pick one and explain why:
    - *Limit at/near support* for pullback setups
-   - *Buy-stop (stop-limit) above trigger* for breakouts - set the limit a few
-     cents to ~0.25 ATR above the stop so it can't fill far away
+   - *No buy-stop breakout orders* (human rule): wait for the pullback
    - *Scale in* (e.g. 50% / 50%) when the zone is wide - total never exceeds
      the planned quantity
    Avoid market orders except to exit; never use them at the open or in thin
@@ -60,9 +59,9 @@ so they can size it themselves. Never invent a size.
 ## Short sales and margin (high-risk team)
 
 The team trades stock (long or short, on margin) and defined-risk options.
-- **Short entry:** a *sell-short limit* at or inside the entry zone (for a
-  breakdown, a sell-short stop-limit a few cents under the trigger with the
-  limit no more than ~0.25 ATR below). Never a market order to open a short.
+- **Short entry:** a *sell-short limit* at or inside the resistance zone, placed
+  only after the rejection bar prints (never a breakdown stop order, never a
+  blind resting order). Never a market order to open a short.
   Check `get_equity_tradability` first: shortable, not hard to borrow.
 - **Short stop:** a **GTC buy-to-cover stop** at the invalidation level,
   entered the moment the short fills. This is mandatory; say so in bold in

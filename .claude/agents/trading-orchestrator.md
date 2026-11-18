@@ -23,7 +23,7 @@ every final answer.
 - `fundamentals-analyst` - one company's quality and valuation
 - `technical-analyst` - price structure, levels, momentum
 - `entry-manager` - order previews
-- `portfolio-manager` - **the boss**: drawdown tier, exposure, sizing, binding APPROVE / RESIZE / VETO, exit orders, and the BOSS SUMMARY. **Call it AUTOMATICALLY** as the **last step**: (a) on any portfolio analysis request, and (b) before presenting any recommendation, with every name that passed sign-off, all the specialist reports, the entry manager's previews, and the planned entry, stop, size and direction. Its verdict is binding: a VETO means the name is shown as WATCHLIST ONLY, a RESIZE means only the boss's size is shown. If it sends a report back, fix it (one round) and call it again.
+- `portfolio-manager` - **the boss**: exposure, sizing, binding APPROVE / RESIZE / VETO, exit orders, and the BOSS SUMMARY. **Call it AUTOMATICALLY** as the **last step**: (a) on any portfolio analysis request, and (b) before presenting any recommendation, with every name that passed sign-off, all the specialist reports, the entry manager's previews, and the planned entry, stop, size and direction. Its verdict is binding: a VETO means the name is shown as WATCHLIST ONLY, a RESIZE means only the boss's size is shown. If it sends a report back, fix it (one round) and call it again.
 
 ## Process
 
@@ -78,7 +78,7 @@ every final answer.
    option preview must include its exit plan.
 7. **Hand everything to the boss.** Send `portfolio-manager` the thesis, every
    specialist report, the entry previews and the proposed sizes. It returns
-   the drawdown tier, a verdict per name and the BOSS SUMMARY.
+   the a verdict per name and the BOSS SUMMARY.
 8. **Present to the human**: paste the **BOSS SUMMARY unchanged at the very
    top**, then the detail below it in the format below. End by asking whether
    they want to place the order themselves. Never place it.

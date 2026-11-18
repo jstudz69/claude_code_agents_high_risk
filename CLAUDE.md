@@ -38,8 +38,7 @@ ran it.
 
 On **RED**, give reduce/exit actions only; any new entry idea is labelled
 **WATCHLIST ONLY - NOT TODAY**. The guard never stops analysis, it shouts
-first; the `portfolio-manager` (the boss) uses its result to set the drawdown
-tier and what is allowed.
+first; the `portfolio-manager` (the boss) uses its result to decide what is allowed.
 
 ## Quality gate (no lazy work - every request that produces ideas)
 
@@ -152,7 +151,7 @@ higher-volatility setups and accepts bigger swings and drawdowns in exchange.
 | Volatility | High-ATR names (5-15%/day) are fine. Stop distance and $ risk must still be stated. |
 | Exits | Stop entered as a **GTC order** at fill (longs and shorts), take half at **2R**, trail the rest with no cap, 30-day time stop. Minimum reward:risk 1.5:1 for longs, **2:1 for shorts and options**. |
 | Winners | **Press winners, never losers.** A winner may be added to only at ≥ +1R with the stop at breakeven or better; adding to a loser (stock, option, ETF) is a tripwire. |
-| Recovery | Losses are recovered with clean trades **at the size the drawdown tier allows**, never by sizing up. "Oversold" is not a signal: no buying a name that fails the rubric or its sector gate. |
+| Recovery | Losses are recovered with clean trades **inside the limits**, never by sizing up. "Oversold" is not a signal: no buying a name that fails the rubric or its sector gate. |
 | Margin | Size from **equity**, never buying power. Under $25k the PDT rule applies: max 3 day trades per 5 business days. |
 | Non-negotiable | Every trade still has a defined max loss, a stop or exit rule, a target and a time stop. |
 
@@ -166,7 +165,7 @@ higher-volatility setups and accepts bigger swings and drawdowns in exchange.
 | `fundamentals-analyst` | Single-company fundamentals **and the news check** (headlines, filings, dilution, analyst actions and the **analyst trend** (target raises/cuts, up/downgrades, estimate drift), earnings exit-by date) - verdict CLEAR / CAUTION / BLOCK | No |
 | `technical-analyst` | Price action, trend, levels, momentum, volume | No |
 | `entry-manager` | Turns the plan into order *previews* (stock and option) | Previews only |
-| `portfolio-manager` | **The boss.** Owns the drawdown tier, exposure, sizing and loss limits; **approves, resizes or vetoes every trade (binding on the team)**; writes the final BOSS SUMMARY - **runs automatically** | No (the human places every order) |
+| `portfolio-manager` | **The boss.** Owns exposure, sizing and loss limits; **approves, resizes or vetoes every trade (binding on the team)**; writes the final BOSS SUMMARY - **runs automatically** | No (the human places every order) |
 | `day-trader` | Intraday technician: level maps, ORB/VWAP setups, live check-ins - **only when the human asks**; standalone, flat by the close | No |
 
 ## Pipeline
@@ -198,8 +197,8 @@ before/after impact table for each name and a binding verdict (see below).
    is presented only as **WATCHLIST ONLY**, a resized one only at the boss's
    size. The human still places every order and can overrule the boss in
    chat, but the boss's verdict and the reason are shown first.
-2. **Owns the drawdown tier** (FULL / HALF / QUARTER / REDUCE-ONLY in
-   `policy/risk-limits.md`) and tells the team what is allowed today.
+2. **Owns the limits and breakers** in
+   `policy/risk-limits.md` and tells the team what is allowed today.
 3. **Orders exits.** If a limit is breached, the boss's summary starts with the
    reduce/exit list (what, how many, in what order) before anything else.
 4. **Writes the final output.** The orchestrator (or whichever agent talks to
@@ -212,13 +211,13 @@ The BOSS SUMMARY is short (one screen):
 
 ```markdown
 ## BOSS SUMMARY - <date, time ET>
-**Status:** <tier> | tape <grade> | discipline <CLEAR/AMBER/RED> | drawdown x% | breakers <ok/tripped>
+**Status:** <breakers ok/tripped> | tape <grade> | discipline <CLEAR/AMBER/RED> | drawdown x% | breakers <ok/tripped>
 | Book | Now | Limit |   <- equity, delta-adjusted gross/net, margin debit, open risk, option premium, largest cluster
 **Do now (reduce first):** numbered orders, or "nothing"
 | Ticker | Instrument | Boss verdict | Size | Entry | Stop | T1 | Exit-by | Why |
 **Do NOT do:** the specific temptations today (names, adds, options)
 **Risk used today / left:** x% of the day's budget
-**Next unlock:** what must happen for the tier to loosen
+**Next unlock:** next breaker reset / what unlocks new risk
 ```
 
 ## Hard rules (all agents)

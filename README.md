@@ -21,7 +21,7 @@ aggressive, asymmetric setups.
 | Extension allowed | < 3 ATR over 20DMA | < 4 ATR if money flow confirms |
 | Technical screen pass bar | 8.0 / 10 | 7.0 / 10 (`policy/tech-screen-rubric.md`) |
 | Candidates per run | ~3-5 | Up to 10 long + 5 bearish |
-| Risk limits (portfolio manager, the boss) | 0.5%/trade, 3% total, no options | 3%/trade, 20% total open risk, delta-adjusted gross ≤ 2.0× equity, option premium ≤ 25%, **drawdown ladder** (FULL / HALF / QUARTER / REDUCE-ONLY) shrinks everything after losses |
+| Risk limits (portfolio manager, the boss) | 0.5%/trade, 3% total, no options | 3%/trade, 20% total open risk, delta-adjusted gross ≤ 2.0× equity, option premium ≤ 25%, loss breakers (day -5%, week -12%) |
 | Winners and losers | n/a | Press winners at +1R with a breakeven stop; **never add to a loser**; no buying "oversold" names that fail the rubric |
 | Shorts | n/a | GTC buy-stop at fill, easy to borrow, short interest ≤ 20%, days to cover ≤ 5 |
 
@@ -33,7 +33,7 @@ aggressive, asymmetric setups.
 | Fundamentals analyst | `.claude/agents/fundamentals-analyst.md` | Single-stock business and valuation |
 | Technical analyst | `.claude/agents/technical-analyst.md` | Trend, levels, momentum, ATR |
 | Entry manager | `.claude/agents/entry-manager.md` | Order previews (never places orders) |
-| Portfolio manager (**boss**) | `.claude/agents/portfolio-manager.md` | Drawdown tier, exposure, sizing; **binding approve / resize / veto**; exit orders; writes the **BOSS SUMMARY** shown first on every answer |
+| Portfolio manager (**boss**) | `.claude/agents/portfolio-manager.md` | Exposure, sizing; **binding approve / resize / veto**; exit orders; writes the **BOSS SUMMARY** shown first on every answer |
 
 Shared rules, the pipeline and the report format are in [`CLAUDE.md`](CLAUDE.md).
 
@@ -61,10 +61,9 @@ You can also call any specialist directly from a normal session:
 The portfolio manager is the boss and runs automatically as the last step of
 every analysis. Ask it directly too, e.g. `Run a risk review on my positions`
 or `Size an IQV entry at 272.76 with a stop at 264.70`. Every answer opens with
-its **BOSS SUMMARY** (tier, book vs limits, what to do now, what not to do,
+its **BOSS SUMMARY** (book vs limits, what to do now, what not to do,
 next unlock). Its limits live in `policy/risk-limits.md` (aggressive defaults;
-edit to taste), including the **drawdown ladder**: after losses the team
-shrinks size and then goes reduce-only instead of sizing up to recover.
+edit to taste), with no drawdown ladder: full limits at all times, only the loss breakers brake.
 
 ## Day trader (intraday, on request)
 

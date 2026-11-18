@@ -1,8 +1,8 @@
 # Risk Limits — HIGH RISK team (AGGRESSIVE mode)
 
 Set by the human on 2026-10-09. Switched 2026-10-14 to stocks only. **Switched
-on 2026-11-18 to AGGRESSIVE mode: options and margin are in play again, with a
-drawdown ladder that sizes risk down after losses.** Read by the
+on 2026-11-18 to AGGRESSIVE mode: options and margin are in play again, with
+full limits at all times (no drawdown ladder).** Read by the
 `portfolio-manager` (the team's boss) and by the discipline guard in
 `CLAUDE.md` on every request. Changes to this file are made by the human only.
 **Every number is a maximum, not a target.**
@@ -13,28 +13,17 @@ High return from a **concentrated-but-diversified book of long and short
 stock and option positions**, using margin and defined-risk options for extra
 punch, so that no single sector, position, squeeze, gap or earnings report can
 do serious damage. Winners are pressed; losers are cut. Recovering a drawdown
-is done with clean trades at the size the ladder allows, **never by sizing up**.
+is done with clean trades inside the limits, **never by sizing past them**.
 
-## The drawdown ladder (sets the size of everything below)
+## Loss breakers (no drawdown ladder)
 
-Drawdown = how far equity (net liquidation value) is below its highest value
-in the last 60 trading days. The boss measures it every request. The tier
-scales every risk limit below; a tier can only be left upward after **5
-consecutive clean trading days** (no tripwire hit, no breaker) and with
-drawdown improved into the next tier.
+The drawdown ladder was **removed by the human on 2026-11-18**. Limits are the
+full numbers below at all times. Drawdown from the 60-day peak is still shown
+in the boss summary, for information only. The only brake is a breaker: if the
+day is down 5% or the rolling week 12%, no new opening trades until the next
+trading session (exits and reductions always allowed).
 
-| Tier | Drawdown | Risk limits | Instruments | New opening trades |
-|---|---|---|---|---|
-| **FULL** | under 10% | 100% of the limits below | Stock, margin, shorts, long options and debit spreads | Allowed (plan, sign-off, 9:45+) |
-| **HALF** | 10% to 20% | 50% of the limits | Stock, shorts, long options and debit spreads (option premium cap halved) | Allowed, leaders only, GREEN or YELLOW tape |
-| **QUARTER** | 20% to 30% | 25% of the limits | Stock only, no margin debit increase, no new options | Allowed, max 1 a day, GREEN tape or shorts on RED |
-| **REDUCE-ONLY** | 30% or more, **or any breaker tripped** | none | Exits and reductions only | **None.** Watchlist levels only |
-
-A breaker (daily or weekly loss) forces REDUCE-ONLY until the next clean
-trading day with no breaker. Leaving REDUCE-ONLY goes to QUARTER first, never
-straight to FULL.
-
-## Account-level limits (FULL tier)
+## Account-level limits 
 
 All exposure is **delta-adjusted**: an option counts at delta × 100 × shares of
 the underlying, a 2× ETF counts at 2×. An option or leveraged ETF cannot be used
@@ -54,7 +43,7 @@ to dodge a limit.
 | Daily loss before new trades stop | **5%** |
 | Weekly loss before new trades stop (rolling 7 days) | **12%** |
 
-## Per-position limits (FULL tier)
+## Per-position limits 
 
 | Limit | Max |
 |---|---|
@@ -70,7 +59,7 @@ to dodge a limit.
 | Rule | Value |
 |---|---|
 | Add to a winner | Only when the position is **≥ +1R**, the stop has been moved to **breakeven or better**, and the new total risk stays inside the limits. Adds are sized so the combined position still risks ≤ 3% from the new stop. |
-| Never add to a loser | Stock, option or ETF. Averaging down is a tripwire in every tier. |
+| Never add to a loser | Stock, option or ETF. Averaging down is a tripwire. |
 | Exits | Take half at 2R, move the stop to breakeven, trail the rest (10- or 20-day average); no cap on the runner; 30-day time stop |
 | Reward:risk to first target | **1.5:1** minimum for longs, **2:1** for shorts, **2:1** for options (premium risk to the underlying's T1 payoff) |
 

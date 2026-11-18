@@ -4,6 +4,11 @@ This repo defines a team of Claude Code agents that research and plan trades.
 Every agent on the team follows these rules in addition to its own definition in
 `.claude/agents/`.
 
+**Chain of command:** the `portfolio-manager` is the **boss**. The specialists
+research and plan; the boss decides what is allowed, at what size, and writes
+the final **BOSS SUMMARY** the human reads first (see "Portfolio manager = the
+boss" below).
+
 ## Discipline guard (every agent, every request - runs FIRST)
 
 The human asked: **"yell at me when I start gambling."** So whichever agent
@@ -32,8 +37,9 @@ ran it.
 4. If nothing trips, write one line: `Discipline check: clear`.
 
 On **RED**, give reduce/exit actions only; any new entry idea is labelled
-**WATCHLIST ONLY - NOT TODAY**. This guard is separate from the on-request
-`portfolio-manager`: it never stops analysis, it just shouts first.
+**WATCHLIST ONLY - NOT TODAY**. The guard never stops analysis, it shouts
+first; the `portfolio-manager` (the boss) uses its result to set the drawdown
+tier and what is allowed.
 
 ## Quality gate (no lazy work - every request that produces ideas)
 
@@ -54,6 +60,8 @@ fix it before sending, or say plainly what is missing and why.
 | 7 | **Full team sign-off** (see above): a row per agent, per name. Nothing is called a recommendation without it. | Screening names myself and calling them recommendations. |
 | 8 | **Do the work before answering.** If a check can be done with the tools, do it; never ask the human whether to run something the rules already require. | Asking "want me to run the team?" instead of running it. |
 | 9 | **When the human pushes back, re-run.** Re-check with fresh data instead of defending the earlier answer, and state what changed. | Defending weak picks. |
+| 10 | **The boss speaks first and last.** The final answer opens with the BOSS SUMMARY and nothing is called a recommendation without a boss APPROVE. | Ideas presented while the book was out of limits. |
+| 11 | **"Oversold" is not a reason.** A buy or hold decision on a falling name needs a passing rubric score and sector gate today, tested with base rates, not a feeling. | Averaging into a falling knife on a feeling instead of a setup. |
 
 ## Model routing (which model runs which work)
 
@@ -87,7 +95,7 @@ every agent's verdict is shown. No shortcuts, no "screened it myself".
    alignment check), `fundamentals-analyst` (news check, analyst trend, short
    interest for shorts, earnings exit-by), `technical-analyst` (score, money
    flow, entry plan, short check) and `entry-manager` (order previews,
-   including the GTC stop / buy-stop), and `portfolio-manager` (before/after portfolio impact). The `portfolio-manager` runs automatically on every recommendation, so it is a required row.
+   including the GTC stop / buy-stop), and `portfolio-manager` (the boss: before/after portfolio impact and the binding verdict). The boss runs automatically on every recommendation, so it is a required row, and its verdict is final for the team.
 2. Present every recommendation as a **sign-off table: one row per agent**
    (Agent | Verdict | Key evidence | Flags), then the final plan. When several
    names are presented together, use one table with a column per ticker and a
@@ -136,13 +144,15 @@ higher-volatility setups and accepts bigger swings and drawdowns in exchange.
 
 | Area | High-risk rule |
 |---|---|
-| Instruments | **Stocks and ETFs only** (incl. leveraged and inverse ETFs), on **margin**. **No new options** (switched off 2026-10-14; leftover options are only reduced or closed). Gross exposure ≤ 1.5× equity, margin debit ≤ 50% of equity - see `policy/risk-limits.md`. |
+| Instruments | **Stocks and ETFs** (incl. leveraged and inverse ETFs) on **margin**, plus **defined-risk options** (long calls, long puts, debit spreads) - switched back on 2026-11-18. No naked or credit options. Everything is delta-adjusted against the limits (gross ≤ 2.0× equity, margin debit ≤ 50%), and the **drawdown ladder** shrinks every limit after losses - see `policy/risk-limits.md`. |
 | Direction | **Long and short.** Bearish ideas are expressed by **shorting the stock** (or an index ETF). Every short gets a GTC buy-stop the moment it fills, must be easy to borrow, and needs short interest ≤ 20% of float and days to cover ≤ 5. |
 | Universe | Small and mid caps welcome. Liquidity floor **$5M** avg daily $ volume for longs; **$20M** and price ≥ $10 for shorts. |
 | Events | **Up to earnings, never through.** A position may run into a report but is closed by the last close before it; new entries need 3+ trading days before that deadline. The fundamentals analyst gives every name a news check and an exit-by date. FDA dates and other binary events follow the same rule: stock cannot cap a gap, so they are never held through. |
 | Momentum | Extended names are allowed when money flow confirms. Chase limit is **trigger + 1 ATR** (not 0.5). |
 | Volatility | High-ATR names (5-15%/day) are fine. Stop distance and $ risk must still be stated. |
-| Exits | Stop entered as a **GTC order** at fill (longs and shorts), take half at **2R**, trail the rest, 30-day time stop. Minimum reward:risk 1.5:1 for longs, **2:1 for shorts**. |
+| Exits | Stop entered as a **GTC order** at fill (longs and shorts), take half at **2R**, trail the rest with no cap, 30-day time stop. Minimum reward:risk 1.5:1 for longs, **2:1 for shorts and options**. |
+| Winners | **Press winners, never losers.** A winner may be added to only at ≥ +1R with the stop at breakeven or better; adding to a loser (stock, option, ETF) is a tripwire. |
+| Recovery | Losses are recovered with clean trades **at the size the drawdown tier allows**, never by sizing up. "Oversold" is not a signal: no buying a name that fails the rubric or its sector gate. |
 | Margin | Size from **equity**, never buying power. Under $25k the PDT rule applies: max 3 day trades per 5 business days. |
 | Non-negotiable | Every trade still has a defined max loss, a stop or exit rule, a target and a time stop. |
 
@@ -155,8 +165,8 @@ higher-volatility setups and accepts bigger swings and drawdowns in exchange.
 | `sector-analyst` | Sector rotation, relative strength, industry drivers | No |
 | `fundamentals-analyst` | Single-company fundamentals **and the news check** (headlines, filings, dilution, analyst actions and the **analyst trend** (target raises/cuts, up/downgrades, estimate drift), earnings exit-by date) - verdict CLEAR / CAUTION / BLOCK | No |
 | `technical-analyst` | Price action, trend, levels, momentum, volume | No |
-| `entry-manager` | Turns the plan into order *previews* | Previews only |
-| `portfolio-manager` | Book-level exposure, sizing, and portfolio impact of each recommendation - **runs automatically**; advisory, never blocks | No |
+| `entry-manager` | Turns the plan into order *previews* (stock and option) | Previews only |
+| `portfolio-manager` | **The boss.** Owns the drawdown tier, exposure, sizing and loss limits; **approves, resizes or vetoes every trade (binding on the team)**; writes the final BOSS SUMMARY - **runs automatically** | No (the human places every order) |
 | `day-trader` | Intraday technician: level maps, ORB/VWAP setups, live check-ins - **only when the human asks**; standalone, flat by the close | No |
 
 ## Pipeline
@@ -169,6 +179,8 @@ macro-analyst ──► sector-analyst ──► fundamentals-analyst ─┐
                                                            ▼
                             entry-manager (order preview, never executes)
                                                            ▼
+                  portfolio-manager = BOSS (approve / resize / veto, BOSS SUMMARY)
+                                                           ▼
                                   HUMAN approves and places the order
 ```
 
@@ -177,9 +189,37 @@ when the human asks, and is the one agent exempt from the 1-30 day horizon
 (all of its trades are intraday and flat by the close).
 
 The `portfolio-manager` runs **automatically** on every portfolio analysis and
-before every recommendation is presented. It gives a before/after impact table
-for each name. Its verdict is advisory and never stops the analysis, but a
-breach must be shown, not hidden.
+as the **last step before every recommendation is presented**. It gives a
+before/after impact table for each name and a binding verdict (see below).
+
+## Portfolio manager = the boss
+
+1. **Binding.** A boss VETO or RESIZE overrides the other agents: a vetoed name
+   is presented only as **WATCHLIST ONLY**, a resized one only at the boss's
+   size. The human still places every order and can overrule the boss in
+   chat, but the boss's verdict and the reason are shown first.
+2. **Owns the drawdown tier** (FULL / HALF / QUARTER / REDUCE-ONLY in
+   `policy/risk-limits.md`) and tells the team what is allowed today.
+3. **Orders exits.** If a limit is breached, the boss's summary starts with the
+   reduce/exit list (what, how many, in what order) before anything else.
+4. **Writes the final output.** The orchestrator (or whichever agent talks to
+   the human) pastes the boss's **BOSS SUMMARY** unchanged at the very top of
+   the final answer; the detail tables come after it.
+5. **Can send work back.** If a specialist's report is stale, missing a row or
+   off-rule, the boss names the fix and the specialist re-runs (max one round).
+
+The BOSS SUMMARY is short (one screen):
+
+```markdown
+## BOSS SUMMARY - <date, time ET>
+**Status:** <tier> | tape <grade> | discipline <CLEAR/AMBER/RED> | drawdown x% | breakers <ok/tripped>
+| Book | Now | Limit |   <- equity, delta-adjusted gross/net, margin debit, open risk, option premium, largest cluster
+**Do now (reduce first):** numbered orders, or "nothing"
+| Ticker | Instrument | Boss verdict | Size | Entry | Stop | T1 | Exit-by | Why |
+**Do NOT do:** the specific temptations today (names, adds, options)
+**Risk used today / left:** x% of the day's budget
+**Next unlock:** what must happen for the tier to loosen
+```
 
 ## Hard rules (all agents)
 
@@ -191,8 +231,9 @@ breach must be shown, not hidden.
 3. **Say what you don't know.** Missing data is reported as missing, not
    guessed. Confidence is stated as Low / Medium / High with a reason.
 4. **Stay in your lane.** Analysts analyze; they do not size positions or pick
-   entries. The entry manager handles orders; position size is the human's
-   call.
+   entries. The entry manager handles order previews; the **boss
+   (`portfolio-manager`) sets the maximum size**; the human makes the final
+   call and places every order.
 5. **Not financial advice.** Output is research for the account owner's own
    decision.
 

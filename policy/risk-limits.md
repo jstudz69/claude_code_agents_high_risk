@@ -1,42 +1,94 @@
-# Risk Limits — HIGH RISK team
+# Risk Limits — HIGH RISK team (AGGRESSIVE mode)
 
-Set by the human on 2026-10-09; **switched on 2026-10-14 to stocks only, margin
-enabled, short selling allowed (no new options).** Read by the `portfolio-manager`
-(on request) and by the discipline guard in `CLAUDE.md` (every request).
-Changes to this file are made by the human only. **Every number is a maximum,
-not a target.**
+Set by the human on 2026-10-09. Switched 2026-10-14 to stocks only. **Switched
+on 2026-11-18 to AGGRESSIVE mode: options and margin are in play again, with a
+drawdown ladder that sizes risk down after losses.** Read by the
+`portfolio-manager` (the team's boss) and by the discipline guard in
+`CLAUDE.md` on every request. Changes to this file are made by the human only.
+**Every number is a maximum, not a target.**
 
 ## Goal
 
-High return from a **diversified book of long and short stock positions**,
-using margin for extra gross exposure, so that no single sector, position,
-squeeze or earnings report can do serious damage. Positions may run **up to**
-earnings but are always **out before the report**.
+High return from a **concentrated-but-diversified book of long and short
+stock and option positions**, using margin and defined-risk options for extra
+punch, so that no single sector, position, squeeze, gap or earnings report can
+do serious damage. Winners are pressed; losers are cut. Recovering a drawdown
+is done with clean trades at the size the ladder allows, **never by sizing up**.
 
-## Account-level limits
+## The drawdown ladder (sets the size of everything below)
+
+Drawdown = how far equity (net liquidation value) is below its highest value
+in the last 60 trading days. The boss measures it every request. The tier
+scales every risk limit below; a tier can only be left upward after **5
+consecutive clean trading days** (no tripwire hit, no breaker) and with
+drawdown improved into the next tier.
+
+| Tier | Drawdown | Risk limits | Instruments | New opening trades |
+|---|---|---|---|---|
+| **FULL** | under 10% | 100% of the limits below | Stock, margin, shorts, long options and debit spreads | Allowed (plan, sign-off, 9:45+) |
+| **HALF** | 10% to 20% | 50% of the limits | Stock, shorts, long options and debit spreads (option premium cap halved) | Allowed, leaders only, GREEN or YELLOW tape |
+| **QUARTER** | 20% to 30% | 25% of the limits | Stock only, no margin debit increase, no new options | Allowed, max 1 a day, GREEN tape or shorts on RED |
+| **REDUCE-ONLY** | 30% or more, **or any breaker tripped** | none | Exits and reductions only | **None.** Watchlist levels only |
+
+A breaker (daily or weekly loss) forces REDUCE-ONLY until the next clean
+trading day with no breaker. Leaving REDUCE-ONLY goes to QUARTER first, never
+straight to FULL.
+
+## Account-level limits (FULL tier)
+
+All exposure is **delta-adjusted**: an option counts at delta × 100 × shares of
+the underlying, a 2× ETF counts at 2×. An option or leveraged ETF cannot be used
+to dodge a limit.
 
 | Limit | Max |
 |---|---|
-| Account size used for sizing | Live account **equity** (net liquidation value) from Robinhood, never buying power |
-| Gross exposure (long value + absolute short value) | **1.5×** equity |
-| Net long exposure | **1.25×** equity |
-| Net short exposure | **0.5×** equity |
-| Total short value | **50%** of equity |
+| Account size used for sizing | Live account **equity** (net liquidation value), never buying power |
+| Gross exposure (long + absolute short, delta-adjusted) | **2.0×** equity |
+| Net long exposure (delta-adjusted) | **1.5×** equity |
+| Net short exposure (delta-adjusted) | **0.75×** equity |
 | Margin debit (borrowed cash) | **50%** of equity |
 | Margin cushion | equity stays **≥ 30% above** the maintenance requirement; a margin call is met by cutting positions, never by depositing more |
-| Total open risk (sum of entry → stop risk, longs and shorts) | **15%** |
-| Positions open at once | 10 |
-| Daily loss before new trades stop | **4%** |
-| Weekly loss before new trades stop (rolling 7 days) | **10%** |
+| Total open risk (sum of entry → stop risk on stock, plus **100% of premium** on options) | **20%** |
+| Total option premium open | **25%** of equity |
+| Positions open at once | 12 (options on the same underlying as a stock count as one position) |
+| Daily loss before new trades stop | **5%** |
+| Weekly loss before new trades stop (rolling 7 days) | **12%** |
 
-## Per-position limits
+## Per-position limits (FULL tier)
 
 | Limit | Max |
 |---|---|
-| Risk per trade (entry → stop, plus a normal overnight gap) | **2.5%** of equity |
-| Long position size | **20%** of equity |
-| Short position size | **15%** of equity (a short's loss has no ceiling) |
-| Probation (until 10 clean trading days are logged) | stock risk ≤ **1%** per trade; short size ≤ **10%** |
+| Risk per stock trade (entry → stop, plus a normal overnight gap) | **3%** of equity |
+| Option position premium | **5%** of equity per position (100% of it counts as at risk) |
+| Long stock position size | **25%** of equity |
+| Short stock position size | **15%** of equity (a short's loss has no ceiling) |
+| Leveraged / inverse ETF | counts at its leverage toward every size limit; max 15% of equity at market value |
+| One underlying, all instruments combined (stock + options + 2× ETF, delta-adjusted) | **30%** of equity |
+
+## Pressing winners (the aggressive part)
+
+| Rule | Value |
+|---|---|
+| Add to a winner | Only when the position is **≥ +1R**, the stop has been moved to **breakeven or better**, and the new total risk stays inside the limits. Adds are sized so the combined position still risks ≤ 3% from the new stop. |
+| Never add to a loser | Stock, option or ETF. Averaging down is a tripwire in every tier. |
+| Exits | Take half at 2R, move the stop to breakeven, trail the rest (10- or 20-day average); no cap on the runner; 30-day time stop |
+| Reward:risk to first target | **1.5:1** minimum for longs, **2:1** for shorts, **2:1** for options (premium risk to the underlying's T1 payoff) |
+
+## Options (defined risk only)
+
+| Rule | Value |
+|---|---|
+| Allowed structures | **Long calls, long puts, and debit vertical spreads.** Nothing with open-ended loss: **no naked or uncovered short options, no short straddles or strangles, no credit spreads** |
+| Thesis | The option is only an instrument. The **underlying** must pass the same full team sign-off, entry zone and stop as a stock trade. No option on a name that failed any agent. |
+| Expiration | Buy **30-75 DTE**, never closer than 2× the planned hold. **Exit by 14 DTE** at the latest. |
+| Strike | **Delta 0.40-0.70.** Options below 0.25 delta (lottery tickets) are not allowed. Prefer a debit spread when IV is above its 60th percentile. |
+| Liquidity | Bid-ask spread **≤ 10% of the mid** (or ≤ $0.10 under $1.00), open interest **≥ 100**. Orders are limits at or near the mid, never market orders. |
+| Events | **Never through earnings, FDA or a regulatory decision** (IV collapse plus a gap). Out by the last close before. New entry needs 3+ trading days before that deadline. |
+| Exit rules | Out if the underlying hits its stop, or the premium is **down 50%**, or 14 DTE, or day 30, whichever comes first. Take half at +100% premium or at the underlying's T1. |
+| Resting stops | If the broker accepts a resting stop on the contract, enter it at fill. If not, set a price alert at the underlying stop and at -50% premium and exit by hand the same session. Say which one applies in the plan. |
+| Count | At most **3 option positions** open at once; options + stock on one name = one position |
+| No rolls | Never roll a losing option; a loser is closed |
+| Tape | RED tape: no new long calls; puts and bear spreads on the weakest groups only. YELLOW: half the premium cap. |
 
 ## Short selling rules
 
@@ -49,33 +101,38 @@ earnings but are always **out before the report**.
 | Liquidity | ≥ **$20M** average daily $ volume and price ≥ **$10** |
 | Event risk | No shorts with pending M&A / buyout talk or an activist; never hold a short through earnings (same exit-by rule) |
 | Dividends | A short pays the dividend: flag any ex-dividend date inside the hold |
-| Adding | Never add to a short that is above its average entry (that is averaging down) |
+| Adding | Never add to a short that is above its average entry |
 
-## Diversification
+## Diversification and correlation
 
 | Limit | Max |
 |---|---|
-| Gross exposure in one **sector bucket** | **35%** of equity |
-| Open risk in one sector bucket | **4%** of equity |
-| Positions in one sector bucket | **2** (a long and a short in the same bucket count as two) |
-| When 4+ long positions are open | hold at least one short (single name or index ETF) of ≥ 10% of equity |
+| Gross exposure in one **sector bucket** (delta-adjusted) | **40%** of equity |
+| Open risk in one sector bucket | **6%** of equity |
+| Positions in one sector bucket | **3** |
+| Correlated cluster (pairwise correlation > +0.60, signed P&L, same direction) | **40%** of equity delta-adjusted and **50%** of portfolio risk |
+| Effective independent bets (PCA) when 4+ positions are open | **≥ 2.5** |
+| 1-day 95% VaR (delta-adjusted) | **6%** of equity |
+| Worst beta scenario (SPY -3%, QQQ -5%, SMH -8%, sector -10%) | **-8%** of equity |
+| When 4+ long positions are open | hold at least one short (single name or index ETF) of ≥ 10% of equity, or an equal-delta put position |
 
 **Sector buckets** (a name goes in the bucket it trades with, not its label):
 
 1. AI / semis / hardware / data-center power (MU, MRVL, AXTI, NVDA, BE ...)
 2. Software / internet / cybersecurity (MSFT, CRWD, ZS, OKTA ...)
-3. Healthcare / biotech / medtech
-4. Financials / fintech
-5. Consumer / retail / staples
-6. Industrials / energy / materials / defense
-7. Crypto-linked (miners, exchanges, BTC ETFs)
-8. Index hedges (SPY / QQQ / IWM shorts or inverse ETFs)
+3. Healthcare services and managed care (UNH, HUM, ELV, CVS ...)
+4. Healthcare other: biotech, tools, diagnostics, medtech
+5. Financials / fintech
+6. Consumer / retail / staples
+7. Industrials / energy / materials / defense
+8. Crypto-linked (miners, exchanges, BTC ETFs)
+9. Index hedges (SPY / QQQ / IWM shorts, puts or inverse ETFs)
 
 ## Earnings: up to, never through
 
 | Rule | Value |
 |---|---|
-| Holding any position (long or short) **through** an earnings report | **Never** |
+| Holding any position (long, short, stock or option) **through** an earnings report | **Never** |
 | Holding **up to** earnings | **Allowed** - the run-up is fair game |
 | Exit-by deadline | The close of the **last session before the report** (an after-the-close report: that day's close; a before-the-open report: the prior day's close) |
 | New entry | Only if at least **3 trading days** remain before the exit-by deadline |
@@ -85,10 +142,9 @@ earnings but are always **out before the report**.
 
 | Rule | Value |
 |---|---|
-| Instruments | Stocks and ETFs (incl. leveraged and inverse ETFs), **long or short**, cash or margin |
-| Options | **No new option positions.** Options opened before 2026-10-14 are only reduced or closed under their old exits (-50% premium stop, sell at +100%, out 7 days before expiry, out before earnings); never added to or rolled |
+| Instruments | Stocks and ETFs (incl. leveraged and inverse ETFs), long or short, cash or margin; long options and debit spreads per the Options section |
 | Stock exits (long and short) | Structure stop entered as a GTC order at fill; take half at 2R; trail the rest beyond the 10- or 20-day average; 30-day time stop |
-| Minimum reward:risk to first target | **1.5 : 1** for longs, **2 : 1** for shorts |
 | Stock liquidity | ≥ $5M average daily $ volume for longs; ≥ $20M for shorts |
 | Pattern Day Trader | Margin account under $25k: max **3 day trades** per 5 business days. A swing trade closed the same day it opened counts. |
 | Margin cost | State the margin interest (and any borrow fee) for a trade planned to last more than 2 weeks |
+| Falling knives | Never buy a stock or call on a name that fails the technical rubric (score < 7) or its sector gate, however "oversold" it looks. Oversold is not a signal. |

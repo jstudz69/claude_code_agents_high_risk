@@ -5,7 +5,7 @@ the same 7-agent team for swing trades held 1 to 30 days, retuned to hunt
 aggressive, asymmetric setups.
 
 > ⚠️ This team takes bigger, more volatile bets: long **and short** stock on
-> **margin**. Losses can be fast and large, and a short's loss has no ceiling.
+> **margin**, plus **defined-risk options** (long calls/puts, debit spreads). Losses can be fast and large, and a short's loss has no ceiling.
 > Every trade still has a stop resting at the broker — and you still place
 > every order yourself.
 
@@ -13,7 +13,7 @@ aggressive, asymmetric setups.
 
 | Area | Standard | High risk |
 |---|---|---|
-| Instruments | Stocks/ETFs | Stocks/ETFs incl. leveraged and inverse ETFs, on margin. No options (since 2026-10-14) |
+| Instruments | Stocks/ETFs | Stocks/ETFs incl. leveraged and inverse ETFs, on margin, plus long calls/puts and debit spreads (back on since 2026-11-18). No naked or credit options |
 | Direction | Long only (in practice) | Long **and** short stock |
 | Liquidity floor | $20M ADV | $5M ADV longs; $20M ADV and ≥ $10 for shorts |
 | Earnings / catalysts | Exit before | Held up to the report, never through |
@@ -21,7 +21,8 @@ aggressive, asymmetric setups.
 | Extension allowed | < 3 ATR over 20DMA | < 4 ATR if money flow confirms |
 | Technical screen pass bar | 8.0 / 10 | 7.0 / 10 (`policy/tech-screen-rubric.md`) |
 | Candidates per run | ~3-5 | Up to 10 long + 5 bearish |
-| Risk limits (portfolio manager, on request) | 0.5%/trade, 3% total, no options | 2.5%/trade, 15% total open risk, gross ≤ 1.5× equity, shorts ≤ 50% of equity |
+| Risk limits (portfolio manager, the boss) | 0.5%/trade, 3% total, no options | 3%/trade, 20% total open risk, delta-adjusted gross ≤ 2.0× equity, option premium ≤ 25%, **drawdown ladder** (FULL / HALF / QUARTER / REDUCE-ONLY) shrinks everything after losses |
+| Winners and losers | n/a | Press winners at +1R with a breakeven stop; **never add to a loser**; no buying "oversold" names that fail the rubric |
 | Shorts | n/a | GTC buy-stop at fill, easy to borrow, short interest ≤ 20%, days to cover ≤ 5 |
 
 | Agent | File | Job |
@@ -32,7 +33,7 @@ aggressive, asymmetric setups.
 | Fundamentals analyst | `.claude/agents/fundamentals-analyst.md` | Single-stock business and valuation |
 | Technical analyst | `.claude/agents/technical-analyst.md` | Trend, levels, momentum, ATR |
 | Entry manager | `.claude/agents/entry-manager.md` | Order previews (never places orders) |
-| Portfolio manager | `.claude/agents/portfolio-manager.md` | Sizing and exposure review - **on request only**, advisory |
+| Portfolio manager (**boss**) | `.claude/agents/portfolio-manager.md` | Drawdown tier, exposure, sizing; **binding approve / resize / veto**; exit orders; writes the **BOSS SUMMARY** shown first on every answer |
 
 Shared rules, the pipeline and the report format are in [`CLAUDE.md`](CLAUDE.md).
 
@@ -57,9 +58,13 @@ Then ask, for example:
 You can also call any specialist directly from a normal session:
 `Use the technical-analyst agent on AAPL`.
 
-The portfolio manager only runs when you ask, e.g. `Run a risk review on my
-positions` or `Size an IQV entry at 272.76 with a stop at 264.70`. Its limits
-live in `policy/risk-limits.md` (aggressive defaults; edit to taste).
+The portfolio manager is the boss and runs automatically as the last step of
+every analysis. Ask it directly too, e.g. `Run a risk review on my positions`
+or `Size an IQV entry at 272.76 with a stop at 264.70`. Every answer opens with
+its **BOSS SUMMARY** (tier, book vs limits, what to do now, what not to do,
+next unlock). Its limits live in `policy/risk-limits.md` (aggressive defaults;
+edit to taste), including the **drawdown ladder**: after losses the team
+shrinks size and then goes reduce-only instead of sizing up to recover.
 
 ## Day trader (intraday, on request)
 
@@ -79,7 +84,8 @@ are talking to pulls your recent orders (read-only) and checks the tripwires in
 [`policy/discipline-rules.md`](policy/discipline-rules.md): entries before
 9:45, averaging down, oversized positions, margin/leverage breaches, shorts
 without a buy-stop, trading through a loss breaker, churn, revenge
-re-entries, off-plan trades, chasing and new option trades. Any hit is
+re-entries, off-plan trades, chasing, options outside the rules, falling-knife
+buys and sizing up to recover. Any hit is
 shown first as a blunt **STOP** alarm with the order and dollars. It never
 blocks analysis; on a RED alarm new ideas are marked "watchlist only".
 

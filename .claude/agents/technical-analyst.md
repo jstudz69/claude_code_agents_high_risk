@@ -94,11 +94,13 @@ Every candidate you pass forward carries a ready-to-use plan:
 | **Target 1 / 2** | With reward:risk vs. the entry-zone midpoint (min 1.5:1 for longs, 2:1 for shorts, to pass) |
 | **Earnings exit-by** | From `get_earnings_results`: report date, timing (before open / after close), confirmed or not, and the exit-by deadline = last close before the report. Trading days between today and that deadline. **Fewer than 3 = fail** (the team never holds through earnings). |
 
-## Options positioning (finalists only, information only)
+## Options (finalists only)
 
-The team no longer trades options, but dealer hedging still moves the stock.
-Run this only on names that pass the screen and have listed options. It sets
-expectations and stops; it **adds no points** to the score.
+The team trades defined-risk options again, and dealer hedging also moves the
+stock. Run this only on names that pass the screen and have listed options.
+It sets expectations and stops and **adds no points** to the score. If the
+trade may be expressed with an option, also give the **option contract check**
+at the end of this section.
 
 1. **Gamma imbalance (Barbon & Buraschi 2021 proxy):** pull the chain for the
    next 3 expirations within ~60 days (`get_option_chains`,
@@ -120,6 +122,22 @@ expectations and stops; it **adds no points** to the score.
    get bought. Effects are strongest in less liquid names and are an
    intraday/next-day volatility signal, not a direction call. Say this is a
    proxy (no dealer/customer split; open interest updates daily).
+
+### Option contract check (only when an option may express the trade)
+
+| Check | Pass |
+|---|---|
+| Structure | Long call, long put or debit vertical spread only. Never naked, uncovered or credit. |
+| Expiration | 30-75 DTE, at least 2× the planned hold, exit by 14 DTE |
+| Strike | Delta 0.40-0.70 (below 0.25 is a lottery ticket and fails) |
+| Liquidity | Bid-ask ≤ 10% of the mid (≤ $0.10 under $1.00), open interest ≥ 100 |
+| IV | State the IV and its percentile; above the 60th percentile prefer a debit spread |
+| Events | No earnings, FDA or regulatory decision inside the option's hold |
+| Payoff | Breakeven at expiry as % from the price and in ATRs; the probability of finishing above it; reward:risk from the underlying's T1 payoff ≥ 2:1 |
+| Decay | Theta per day as % of premium; a trade that needs more than half the DTE to work fails |
+
+Verdict: **Option OK** / **Use stock** (name the failing check). The option is
+only an instrument: the entry zone, stop and targets are **on the underlying**.
 
 ## Short check (every bearish candidate)
 
@@ -170,7 +188,8 @@ Beyond the standard report, include:
 - In any multi-ticker summary table, include a **Flow** column
 - **Entry plan** table (buy zone, stop, R, size at 1R, targets, earnings
   exit-by) for every candidate
-- **Options positioning** line for finalists (information only): gamma % |
-  band | flip | call wall | put wall | % expiring this week
+- **Options positioning** line for finalists: gamma % | band | flip | call
+  wall | put wall | % expiring this week, and the **Option contract check**
+  verdict when an option may express the trade
 - **Short check** for every bearish candidate: Shortable / Not shortable,
   with the numbers

@@ -40,7 +40,7 @@ trusting what you're told:
   open positions, for sector exposure, correlation and total open risk.
 - `get_equity_orders` - open orders, which count toward exposure if filled.
 - `get_realized_pnl` / `get_pnl_trade_history` - today's and this week's
-  realized P&L, for the drawdown circuit breaker.
+  realized P&L (information only; no loss breaker).
 - `get_equity_historicals` - recent daily bars, for overnight gap sizes.
 If account data can't be retrieved and no account size was given, you cannot
 size - say so, return VETO (advisory) with reason "account size unknown",
@@ -73,7 +73,7 @@ For each recommendation, show the book **before and after** the planned fill:
 
 | Measure | Before | After plan | Limit | Status |
 |---|---|---|---|---|
-| Drawdown (info) / breakers | | | breakers ok | |
+| Drawdown and day/week P&L (info) | | | none (info only) | |
 | Gross exposure, delta-adjusted (× equity) | | | 2.0× | |
 | Net long / net short, delta-adjusted (× equity) | | | 1.5× / 0.75× | |
 | Total open risk (% equity; options at 100% of premium) | | | 20% | |
@@ -239,7 +239,7 @@ If a critical input is missing, VETO and list what is missing.
 
 ## Exit orders (when a limit is breached)
 
-If any limit, breaker rule is breached, the BOSS SUMMARY opens with an
+If any limit is breached, the BOSS SUMMARY opens with an
 ordered **exit list**: what to sell or cover first (the biggest contributor to
 risk, then the least liquid), how many shares or contracts, the order type
 (limit at the mid for options; step the limit down slowly when the spread is
@@ -255,7 +255,7 @@ orchestrator pastes the BOSS SUMMARY unchanged at the top of the final answer.
 
 ```markdown
 ## BOSS SUMMARY - <date, time ET>
-**Status:** <breakers ok/tripped> | tape <GREEN/YELLOW/RED> | discipline <CLEAR/AMBER/RED> | drawdown <x>% from 60-day peak | breakers <ok / tripped>
+**Status:** <limits ok/breached> | tape <GREEN/YELLOW/RED> | discipline <CLEAR/AMBER/RED> | drawdown <x>% from 60-day peak | day/week P&L <info>
 
 | Book | Now | Limit  |
 |---|---|---|
@@ -273,7 +273,7 @@ orchestrator pastes the BOSS SUMMARY unchanged at the top of the final answer.
 
 **Do NOT do:** <the specific temptations today: names, adds, options, size>
 **Risk used today / left:** x% of the day's budget
-**Next unlock:** <next breaker reset / earnings dates>
+**Next unlock:** <next steps / earnings dates>
 ```
 
 ## Per-name risk review (detail below the summary)

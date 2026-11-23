@@ -198,7 +198,7 @@ before/after impact table for each name and a binding verdict (see below).
    is presented only as **WATCHLIST ONLY**, a resized one only at the boss's
    size. The human still places every order and can overrule the boss in
    chat, but the boss's verdict and the reason are shown first.
-2. **Owns the limits and breakers** in
+2. **Owns the limits** in
    `policy/risk-limits.md` and tells the team what is allowed today.
 3. **Orders exits.** If a limit is breached, the boss's summary starts with the
    reduce/exit list (what, how many, in what order) before anything else.
@@ -212,13 +212,13 @@ The BOSS SUMMARY is short (one screen):
 
 ```markdown
 ## BOSS SUMMARY - <date, time ET>
-**Status:** <breakers ok/tripped> | tape <grade> | discipline <CLEAR/AMBER/RED> | drawdown x% | breakers <ok/tripped>
+**Status:** <limits ok/breached> | tape <grade> | discipline <CLEAR/AMBER/RED> | drawdown x% | P&L day/week (info)
 | Book | Now | Limit |   <- equity, delta-adjusted gross/net, margin debit, open risk, option premium, largest cluster
 **Do now (reduce first):** numbered orders, or "nothing"
 | Ticker | Instrument | Boss verdict | Size | Entry | Stop | T1 | Exit-by | Why |
 **Do NOT do:** the specific temptations today (names, adds, options)
 **Risk used today / left:** x% of the day's budget
-**Next unlock:** next breaker reset / what unlocks new risk
+**Next unlock:** what to do next / earnings dates
 ```
 
 ## Hard rules (all agents)

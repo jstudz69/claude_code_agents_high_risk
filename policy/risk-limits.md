@@ -15,13 +15,15 @@ punch, so that no single sector, position, squeeze, gap or earnings report can
 do serious damage. Winners are pressed; losers are cut. Recovering a drawdown
 is done with clean trades inside the limits, **never by sizing past them**.
 
-## Loss breakers (no drawdown ladder)
+## Losses do not lock you out (no ladder, no breakers)
 
-The drawdown ladder was **removed by the human on 2026-11-18**. Limits are the
-full numbers below at all times. Drawdown from the 60-day peak is still shown
-in the boss summary, for information only. The only brake is a breaker: if the
-day is down 5% or the rolling week 12%, no new opening trades until the next
-trading session (exits and reductions always allowed).
+The drawdown ladder was **removed by the human on 2026-11-18** and the loss
+breakers (day -5% / week -12% no-new-trades) were **removed on 2026-11-23**.
+Limits below apply in full at all times, and a losing day or week does not stop
+new trades. Daily and weekly P&L and drawdown from the 60-day peak are still
+reported in the boss summary, **for information only**. What still limits risk:
+position size, open risk, delta-adjusted exposure, a stop on every trade, and
+3 opening trades a day.
 
 ## Account-level limits 
 
@@ -40,8 +42,6 @@ to dodge a limit.
 | Total open risk (sum of entry → stop risk on stock, plus **100% of premium** on options) | **20%** |
 | Total option premium open | **25%** of equity |
 | Positions open at once | 12 (options on the same underlying as a stock count as one position) |
-| Daily loss before new trades stop | **5%** |
-| Weekly loss before new trades stop (rolling 7 days) | **12%** |
 
 ## Per-position limits 
 

@@ -21,7 +21,7 @@ aggressive, asymmetric setups.
 | Extension allowed | < 3 ATR over 20DMA | < 4 ATR if money flow confirms |
 | Technical screen pass bar | 8.0 / 10 | 7.0 / 10 (`policy/tech-screen-rubric.md`) |
 | Candidates per run | ~3-5 | Up to 10 long + 5 bearish |
-| Risk limits (portfolio manager, the boss) | 0.5%/trade, 3% total, no options | 3%/trade, 20% total open risk, delta-adjusted gross ≤ 2.0× equity, option premium ≤ 25%, loss breakers (day -5%, week -12%) |
+| Risk limits (portfolio manager, the boss) | 0.5%/trade, 3% total, no options | 3%/trade, 20% total open risk, delta-adjusted gross ≤ 2.0× equity, option premium ≤ 25%, no loss breaker (full limits at all times) |
 | Winners and losers | n/a | Press winners at +1R with a breakeven stop; **never add to a loser**; no buying "oversold" names that fail the rubric |
 | Shorts | n/a | GTC buy-stop at fill, easy to borrow, short interest ≤ 20%, days to cover ≤ 5 |
 
@@ -63,7 +63,7 @@ every analysis. Ask it directly too, e.g. `Run a risk review on my positions`
 or `Size an IQV entry at 272.76 with a stop at 264.70`. Every answer opens with
 its **BOSS SUMMARY** (book vs limits, what to do now, what not to do,
 next unlock). Its limits live in `policy/risk-limits.md` (aggressive defaults;
-edit to taste), with no drawdown ladder: full limits at all times, only the loss breakers brake.
+edit to taste), with no drawdown ladder: full limits at all times, a losing day or week does not lock you out.
 
 ## Day trader (intraday, on request)
 
@@ -82,7 +82,7 @@ Before any analysis that touches the account or a trade idea, the agent you
 are talking to pulls your recent orders (read-only) and checks the tripwires in
 [`policy/discipline-rules.md`](policy/discipline-rules.md): entries before
 9:45, averaging down, oversized positions, margin/leverage breaches, shorts
-without a buy-stop, trading through a loss breaker, churn, revenge
+without a buy-stop, churn, revenge
 re-entries, off-plan trades, chasing, options outside the rules, falling-knife
 buys and sizing up to recover. Any hit is
 shown first as a blunt **STOP** alarm with the order and dollars. It never

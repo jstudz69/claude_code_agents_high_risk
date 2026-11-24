@@ -59,9 +59,10 @@ so they can size it themselves. Never invent a size.
 ## Short sales and margin (high-risk team)
 
 The team trades stock (long or short, on margin) and defined-risk options.
-- **Short entry:** a *sell-short limit* at or inside the resistance zone, placed
-  only after the rejection bar prints (never a breakdown stop order, never a
-  blind resting order). Never a market order to open a short.
+- **Short entry:** a *sell-short limit* inside the resistance zone. **Two tranches:**
+  half as a resting DAY limit at the zone's middle (no rejection bar needed),
+  half on the rejection bar or at the zone's far edge (never a breakdown stop
+  order). Never a market order to open a short.
   Check `get_equity_tradability` first: shortable, not hard to borrow.
 - **Short stop:** a **GTC buy-to-cover stop** at the invalidation level,
   entered the moment the short fills. This is mandatory; say so in bold in

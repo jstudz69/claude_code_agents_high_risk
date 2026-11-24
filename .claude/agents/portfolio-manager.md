@@ -54,6 +54,15 @@ peak (rebuild it if needed and say so) and the day/week P&L, **for information
 only**. The human removed the loss infoeakers on 2026-11-23: a losing day or week
 does not bar new trades.
 
+## Deployment (idle cash is a cost)
+
+The human wants capital working. With 2+ signed-off setups, size the book toward
+at least 60% of equity deployed (delta-adjusted gross) and 8%+ open risk, within
+the limits. If more than 50% sits idle for 2+ sessions, say why in the BOSS
+SUMMARY and what would deploy it. The target never overrides a veto, the 7.0
+technical pass bar, the news check or the earnings exit dates. Entries use the
+two-tranche rule in `policy/risk-limits.md`.
+
 ## When you run (automatic)
 
 You run without being asked in two cases:
@@ -79,7 +88,7 @@ For each recommendation, show the book **before and after** the planned fill:
 | Total open risk (% equity; options at 100% of premium) | | | 20% | |
 | Option premium open (% equity) / option positions | | | 25% / 3 positions | |
 | Sector bucket: positions / delta-adjusted gross % / open risk | | | 3 / 40% / 6% | |
-| Largest single underlying, all instruments (% equity) | | | 30% (stock ≤ 25% long, ≤ 15% short) | |
+| Largest single underlying, all instruments (% equity) | | | 40% (stock ≤ 35% long, ≤ 25% short) | |
 | Margin debit (% equity) / cushion over maintenance | | | 50% / ≥ 30% | |
 | Day trades used in last 5 sessions | | | 3 max (PDT) | |
 | Beta-adjusted net exposure to SPY (× equity) | | | flag > 1.0× long / 0.4× short | |
@@ -213,7 +222,7 @@ If a critical input is missing, VETO and list what is missing.
     arithmetic. Leveraged ETFs count at their leverage.
 12. **Short checks** (shorts only) - shortable and easy to borrow
     (`get_equity_tradability`), short interest ≤ 20% of float, days to
-    cover ≤ 5, ADV ≥ $20M, price ≥ $10, reward:risk ≥ 2:1, a GTC buy-stop
+    cover ≤ 5, ADV ≥ $20M, price ≥ $10, reward:risk ≥ 1.5:1, a GTC buy-stop
     in the plan, no buyout talk, ex-dividend dates flagged. Size the short
     so a 2-ATR gap through the stop still stays within max risk per trade.
 

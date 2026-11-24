@@ -69,7 +69,7 @@ every final answer.
      any rule. State the delta-adjusted gross exposure after the trade and
      whether it needs margin.
    Medium conviction is enough to trade here if the payoff is asymmetric
-   (target ≥ 2x the defined risk; shorts always need ≥ 2:1). If views conflict badly or conviction is
+   (target ≥ 2x the defined risk; shorts need ≥ 1.5:1). If views conflict badly or conviction is
    Low, it is still **no trade**.
 6. **Entry plan.** For a TRADE decision, send the thesis, entry zone or
    trigger, invalidation level, targets, ATR, earnings date, direction (long /

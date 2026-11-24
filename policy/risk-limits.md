@@ -47,21 +47,48 @@ to dodge a limit.
 
 | Limit | Max |
 |---|---|
-| Risk per stock trade (entry → stop, plus a normal overnight gap) | **3%** of equity |
+| Risk per stock trade (entry → stop, plus a normal overnight gap) | **4%** of equity |
 | Option position premium | **5%** of equity per position (100% of it counts as at risk) |
-| Long stock position size | **25%** of equity |
-| Short stock position size | **15%** of equity (a short's loss has no ceiling) |
-| Leveraged / inverse ETF | counts at its leverage toward every size limit; max 15% of equity at market value |
-| One underlying, all instruments combined (stock + options + 2× ETF, delta-adjusted) | **30%** of equity |
+| Long stock position size | **35%** of equity |
+| Short stock position size | **25%** of equity (a short's loss has no ceiling) |
+| Leveraged / inverse ETF | counts at its leverage toward every size limit; max 25% of equity at market value |
+| One underlying, all instruments combined (stock + options + 2× ETF, delta-adjusted) | **40%** of equity |
+
+## Deployment: idle cash is a cost (added 2026-11-24)
+
+The human wants capital working. The boss sizes the book to **use the risk
+budget** whenever vetted setups exist.
+
+| Rule | Value |
+|---|---|
+| Deployment target | With 2+ signed-off setups, aim for **at least 60% of equity deployed** (delta-adjusted gross) and **8%+ open risk**, up to the limits above |
+| Idle cash | If more than **50%** sits idle for 2+ sessions, the BOSS SUMMARY says why and names what would deploy it (a zone to be reached, a vetoed name that could be resized) |
+| Not a licence | The target never overrides a veto, the 7.0 technical pass bar, the news check or the earnings exit dates. No entry is taken just to be invested. |
+
+## Entry style: two tranches (updated 2026-11-24)
+
+No breakouts or breakdowns (human rule). The old "wait for a rejection bar
+before any order" is replaced by two tranches so price that touches the zone
+does not run away without you:
+
+| Tranche | Size | Order |
+|---|---|---|
+| A (starter) | 50% of the planned size | A **resting DAY limit inside the zone** (the zone's middle) from 9:45 ET on. No rejection bar needed. |
+| B (confirmation) | 50% | On the rejection bar (a 30-minute bar into the zone that closes back beyond the zone's edge), or at the zone's far edge |
+
+The stop is the same for the whole position and goes in as a GTC order the
+moment any part fills. If price never reaches the zone: no trade, no chasing.
+Within 0.5 ATR of the zone in a strong trend, the limit may sit at the zone's
+near edge.
 
 ## Pressing winners (the aggressive part)
 
 | Rule | Value |
 |---|---|
-| Add to a winner | Only when the position is **≥ +1R**, the stop has been moved to **breakeven or better**, and the new total risk stays inside the limits. Adds are sized so the combined position still risks ≤ 3% from the new stop. |
+| Add to a winner | Only when the position is **≥ +1R**, the stop has been moved to **breakeven or better**, and the new total risk stays inside the limits. Adds are sized so the combined position still risks ≤ 4% from the new stop. |
 | Never add to a loser | Stock, option or ETF. Averaging down is a tripwire. |
 | Exits | Take half at 2R, move the stop to breakeven, trail the rest (10- or 20-day average); no cap on the runner; 30-day time stop |
-| Reward:risk to first target | **1.5:1** minimum for longs, **2:1** for shorts, **2:1** for options (premium risk to the underlying's T1 payoff) |
+| Reward:risk to first target | **1.5:1** minimum for longs and shorts, **2:1** for options (premium risk to the underlying's T1 payoff) |
 
 ## Options (defined risk only)
 
@@ -84,7 +111,7 @@ to dodge a limit.
 | Rule | Value |
 |---|---|
 | Protective order | A **GTC buy-stop (buy to cover)** at the plan's invalidation is entered as soon as the short fills. No mental stops on shorts, ever. |
-| Stop distance | 1-3 ATR above entry, above the structure that defines the breakdown |
+| Stop distance | 0.75-3 ATR above entry, above the structure that defines the breakdown |
 | Shortable | Must be shortable and easy to borrow (`get_equity_tradability`); no hard-to-borrow names |
 | Squeeze risk | Short interest **≤ 20%** of float and days to cover **≤ 5**; above either = no new short |
 | Liquidity | ≥ **$20M** average daily $ volume and price ≥ **$10** |

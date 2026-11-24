@@ -87,12 +87,12 @@ Every candidate you pass forward carries a ready-to-use plan:
 
 | Field | Rule |
 |---|---|
-| **Entry style** | **Fade-the-bounce / buy-the-pullback only.** No breakout or breakdown triggers (human rule). Name the resistance or support zone, the rejection/confirmation signal (e.g. a 30-minute close back under the level), the dead-idea level, and the odds of reaching the zone in 1-5 sessions. No bounce = no trade |
+| **Entry style** | **Fade-the-bounce / buy-the-pullback only.** No breakout or breakdown triggers (human rule). Name the resistance or support zone, the dead-idea level, and the odds of reaching the zone in 1-5 sessions. **Two tranches (human rule 2026-11-24):** 50% as a resting limit inside the zone (no rejection bar needed), 50% on the rejection bar or at the zone's far edge. No touch = no trade |
 | **Entry zone** | A price range, not a single price. Long: from the trigger (or the pullback support) to at most trigger + 1 ATR. Short: from the breakdown trigger (or the failed-rally resistance) to at most trigger - 1 ATR |
 | **Stop** | The structural invalidation level. Long: below the base, pullback low or key moving average. Short: above the breakdown level, lower high or key moving average (1-3 ATR) |
 | **R per share** | Distance from the entry-zone midpoint to the stop, in $ and in ATRs |
 | **Size at 1R** | Shares for a 1% and a 2% account risk (account equity from the request; leave blank if not given) |
-| **Target 1 / 2** | With reward:risk vs. the entry-zone midpoint (min 1.5:1 for longs, 2:1 for shorts, to pass) |
+| **Target 1 / 2** | With reward:risk vs. the entry-zone midpoint (min 1.5:1 for longs and shorts, 2:1 for options, to pass) |
 | **Earnings exit-by** | From `get_earnings_results`: report date, timing (before open / after close), confirmed or not, and the exit-by deadline = last close before the report. Trading days between today and that deadline. **Fewer than 3 = fail** (the team never holds through earnings). |
 
 ## Options (finalists only)
@@ -149,7 +149,7 @@ only an instrument: the entry zone, stop and targets are **on the underlying**.
 | Short interest | ≤ 20% of float (from the fundamentals analyst or a dated web source) |
 | Days to cover | ≤ 5 |
 | Squeeze tell | Not above a key level on rising volume; no gap-up of > 2 ATR in the last 5 days |
-| Stop | 1-3 ATR above entry, above a clear structure level |
+| Stop | 0.75-3 ATR above entry, above a clear structure level |
 
 Verdict: **Shortable** / **Not shortable** (name the failing check). Say
 which data you could not verify.

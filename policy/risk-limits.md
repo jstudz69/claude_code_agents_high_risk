@@ -65,6 +65,31 @@ budget** whenever vetted setups exist.
 | Idle cash | If more than **50%** sits idle for 2+ sessions, the BOSS SUMMARY says why and names what would deploy it (a zone to be reached, a vetoed name that could be resized) |
 | Not a licence | The target never overrides a veto, the 7.0 technical pass bar, the news check or the earnings exit dates. No entry is taken just to be invested. |
 
+## Volatility regime (added 2026-11-25)
+
+Read **VIX** (the prior close, or live if it moved more than 10% intraday; fall
+back to VXX vs its 20d if VIX is unavailable) at the start of every run, and
+state the regime in the BOSS SUMMARY. The regime caps risk per trade and sets
+the stop width; everything else in this file still applies. Per-trade risk is
+`min(4%, regime cap)`. Stops are still set above the structure; the regime only
+widens the allowed range.
+
+| VIX | Regime | Stop (ATR) | Risk per trade | Entries | Targets and holding |
+|---|---|---|---|---|---|
+| under 20 | Calm | 0.75-1.5 | 4% | Two tranches as written | T1 at 1.5R |
+| 20-30 | Elevated | 1.0-2.0 | 3% | Two tranches, sell-the-bounce zones only | T1 at 1.5R, take half there |
+| **30-40** | **Stress** | **1.5-2.5** (room for squeezes) | **2-3%**, so a 2-ATR gap through the stop stays inside the budget | Bounce/retest only, **no chasing gaps**, no breakouts or breakdowns | Take half at 1.5R; size down into scheduled data (PCE, FOMC, CPI) and holidays |
+| over 40, or VIX up 20%+ in one day | Extreme | n/a | **Half size** (max 2% risk) | Index and hedge-level names only | Hold shorter, no new entry in the first 30 minutes |
+
+Notes:
+- Wider stops with a smaller risk percentage mean fewer shares. That is the
+  intent: volatility consumes the risk budget, not the position cap. Use more
+  small, uncorrelated names (one per theme) to put capital to work, never
+  bigger size.
+- Gap rule at all times: a name that gaps beyond its zone gets no Tranche A.
+- The 2-ATR overnight gap test (loss <= 4% per name at FULL regime, <= 3% in
+  Stress) is checked at the new risk cap.
+
 ## Entry style: two tranches (updated 2026-11-24)
 
 No breakouts or breakdowns (human rule). The old "wait for a rejection bar

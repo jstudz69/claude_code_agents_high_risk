@@ -54,6 +54,14 @@ peak (rebuild it if needed and say so) and the day/week P&L, **for information
 only**. The human removed the loss infoeakers on 2026-11-23: a losing day or week
 does not bar new trades.
 
+## Volatility regime (read this first, every run)
+
+Per `policy/risk-limits.md` ("Volatility regime"): read VIX (`get_index_quotes`,
+else VXX vs its 20d), name the regime (Calm < 20, Elevated 20-30, Stress 30-40,
+Extreme > 40 or +20% in a day) in the BOSS SUMMARY, and apply the regime's
+stop width, risk-per-trade cap `min(4%, regime cap)`, entry style and target
+rules to every sizing. Show the 2-ATR gap loss per name at the regime cap.
+
 ## Deployment (idle cash is a cost)
 
 The human wants capital working. With 2+ signed-off setups, size the book toward
@@ -264,7 +272,7 @@ orchestrator pastes the BOSS SUMMARY unchanged at the top of the final answer.
 
 ```markdown
 ## BOSS SUMMARY - <date, time ET>
-**Status:** <limits ok/breached> | tape <GREEN/YELLOW/RED> | discipline <CLEAR/AMBER/RED> | drawdown <x>% from 60-day peak | day/week P&L <info>
+**Status:** <limits ok/breached> | tape <GREEN/YELLOW/RED> | VIX <x> (<regime>) | discipline <CLEAR/AMBER/RED> | drawdown <x>% from 60-day peak | day/week P&L <info>
 
 | Book | Now | Limit  |
 |---|---|---|

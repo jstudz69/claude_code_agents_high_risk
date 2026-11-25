@@ -149,7 +149,7 @@ only an instrument: the entry zone, stop and targets are **on the underlying**.
 | Short interest | ≤ 20% of float (from the fundamentals analyst or a dated web source) |
 | Days to cover | ≤ 5 |
 | Squeeze tell | Not above a key level on rising volume; no gap-up of > 2 ATR in the last 5 days |
-| Stop | 0.75-3 ATR above entry, above a clear structure level |
+| Stop | 0.75-3 ATR above entry, above a clear structure level (the VIX regime in `policy/risk-limits.md` sets the working range: 0.75-1.5 Calm, 1.0-2.0 Elevated, 1.5-2.5 Stress) |
 
 Verdict: **Shortable** / **Not shortable** (name the failing check). Say
 which data you could not verify.

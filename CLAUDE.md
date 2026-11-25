@@ -212,7 +212,7 @@ The BOSS SUMMARY is short (one screen):
 
 ```markdown
 ## BOSS SUMMARY - <date, time ET>
-**Status:** <limits ok/breached> | tape <grade> | discipline <CLEAR/AMBER/RED> | drawdown x% | P&L day/week (info)
+**Status:** <limits ok/breached> | tape <grade> | VIX <x> (<regime>) | discipline <CLEAR/AMBER/RED> | drawdown x% | P&L day/week (info)
 | Book | Now | Limit |   <- equity, delta-adjusted gross/net, margin debit, open risk, option premium, largest cluster
 **Do now (reduce first):** numbered orders, or "nothing"
 | Ticker | Instrument | Boss verdict | Size | Entry | Stop | T1 | Exit-by | Why |

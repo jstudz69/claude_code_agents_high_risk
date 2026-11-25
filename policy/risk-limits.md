@@ -23,7 +23,7 @@ Limits below apply in full at all times, and a losing day or week does not stop
 new trades. Daily and weekly P&L and drawdown from the 60-day peak are still
 reported in the boss summary, **for information only**. What still limits risk:
 position size, open risk, delta-adjusted exposure, a stop on every trade, and
-3 opening trades a day.
+5 opening trades a day.
 
 ## Account-level limits 
 

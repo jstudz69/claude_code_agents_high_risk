@@ -217,7 +217,7 @@ If a critical input is missing, VETO and list what is missing.
     `contracts = floor(premium budget / (premium × 100))` with 100% of premium
     counted as risk.
 11. **Margin and gross exposure** - after this trade, **delta-adjusted**: gross
-    ≤ 2.0× equity, net long ≤ 1.5×, net short ≤ 0.75×, short value ≤ 50%,
+    ≤ 2.0× equity, net long ≤ 1.5×, net short ≤ 0.75× (the binding short limit; no separate 50% short-value cap),
     margin debit ≤ 50%, cushion ≥ 30% over maintenance (each). Show the
     arithmetic. Leveraged ETFs count at their leverage.
 12. **Short checks** (shorts only) - shortable and easy to borrow

@@ -34,6 +34,17 @@ to lead or lag over the **next ~30 days**. Short-term relative strength
 6. **Sector catalysts in the next 30 days** - data releases, policy decisions,
    commodity events or conferences that could move the group.
 
+7. **Concentration and breadth inside each group** - the top 3 holdings'
+   weights and how much of the ETF's 1-day and 5-day move they explain; the %
+   of the group's members above their 20d. Flag a group as **narrow** when one
+   name drives more than 40% of its move (e.g. NVDA in SMH/XLK), and list that
+   name's dated events: a sector short is really a bet on that one stock.
+8. **Credit-exposed groups** - when the macro analyst's credit stress level is
+   WATCH or worse, rank alternative managers (KKR, BX, APO, ARES, OWL), BDCs
+   (BIZD), regional banks (KRE), card lenders and heavily indebted small caps
+   against SPY and include them in the bearish candidates when they fail the
+   gate.
+
 ## Output additions
 
 Beyond the standard report, include:

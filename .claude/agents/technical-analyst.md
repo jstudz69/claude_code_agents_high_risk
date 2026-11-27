@@ -149,6 +149,7 @@ only an instrument: the entry zone, stop and targets are **on the underlying**.
 | Short interest | ≤ 20% of float (from the fundamentals analyst or a dated web source) |
 | Days to cover | ≤ 5 |
 | Squeeze tell | Not above a key level on rising volume; no gap-up of > 2 ATR in the last 5 days |
+| Squeeze risk score | Score LOW / MEDIUM / HIGH from: short interest > 10% or days to cover > 3; price > 3.5 ATR below the 20d or RSI < 25; up > 8% off the 3-day low; a pending positive catalyst (CEO, deal, guidance); heavy call open interest just above price. **HIGH = confirmation tranche (B) only, no resting A order** |
 | Stop | 0.75-3 ATR above entry, above a clear structure level (the VIX regime in `policy/risk-limits.md` sets the working range: 0.75-1.5 Calm, 1.0-2.0 Elevated, 1.5-2.5 Stress) |
 
 Verdict: **Shortable** / **Not shortable** (name the failing check). Say

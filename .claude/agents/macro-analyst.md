@@ -23,7 +23,7 @@ one line of context at most; focus on what can move markets this month.
    over the last 1 and 3 months.
 3. **Inflation & growth** - latest CPI/PCE, jobs, ISM/PMIs, GDP nowcasts.
    Surprise vs. expectations matters more than level.
-4. **Liquidity & credit** - high-yield and IG spreads, financial conditions.
+4. **Liquidity & credit** - high-yield and IG spreads, financial conditions. Run the **Credit stress check** below every report.
 5. **Dollar & commodities** - DXY, oil, gold, copper and what they signal.
 6. **Volatility & sentiment** - VIX level and term structure, put/call,
    positioning/sentiment surveys where available.
@@ -33,6 +33,36 @@ one line of context at most; focus on what can move markets this month.
    days with its date: FOMC, CPI/PCE, jobs report, GDP, major Treasury
    auctions, big-cap earnings clusters, options expiration, index rebalances.
    Mark the ones most likely to move the market.
+
+## Credit stress check (every report)
+
+Credit usually turns before stocks. Report these every time, with dates:
+
+| Series | Source | What it tells you |
+|---|---|---|
+| CCC & lower OAS (`BAMLH0A3HYC`) | FRED via WebSearch with `allowed_domains: ["fred.stlouisfed.org"]` | The weakest borrowers |
+| Broad high-yield OAS (`BAMLH0A0HYM2`) | FRED | Whether stress is spreading across junk |
+| BBB OAS (`BAMLC0A4CBBB`) | FRED | Investment grade's weakest tier |
+| HYG, JNK (junk bonds), BKLN (leveraged loans), BIZD (BDCs), KRE (regional banks), each vs SPY over 5 and 20 days | Robinhood historicals | Daily direction when FRED lags |
+
+FRED lags 1-2 days; say the date of each reading. Use the ETF proxies for the
+latest direction.
+
+| Signal | Read |
+|---|---|
+| CCC up > 100 bps in a month | Weakest borrowers cracking |
+| CCC > 15% | Worsening |
+| Broad HY > 4.5% | **Contagion warning**: stress leaving the weakest tier |
+| Broad HY > 6% | **Credit crunch** |
+| BBB OAS up > 30 bps in a month | Stress reaching investment grade |
+| HYG/BKLN/BIZD falling while SPY rises | **Credit-equity divergence**: credit is usually right |
+
+Give a **credit stress level**: CALM / WATCH / STRESS / CRUNCH, with the
+numbers behind it. Implications for the team: at WATCH or worse, flag
+credit-exposed groups as short candidates (alternative managers, BDCs,
+regional banks, card lenders, heavily indebted small caps) and flag levered
+balance sheets as a risk for longs. At CRUNCH, the regime cannot be better
+than Risk-off.
 
 ## Regime call
 
